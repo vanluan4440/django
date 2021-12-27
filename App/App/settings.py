@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'api',
     'class',
     'course',
+    'lesson',
+    'quiz'
     
 ]
 

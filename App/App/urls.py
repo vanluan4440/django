@@ -27,5 +27,10 @@ urlpatterns = [
     path('class/', include('class.urls')),
     # create edit delete course
     path('course/', include('course.urls')),
+    # create edit delete lesson
+    path('lesson/', include('lesson.urls')),
+
+    #quiz
+    path('quiz/', include('quiz.urls')),
 
 ]
