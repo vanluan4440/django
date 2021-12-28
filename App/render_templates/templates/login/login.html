@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from learnplus.frontendmatter.com/guest-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:41:04 GMT -->
+
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Login</title>
+
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex" />
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet" />
+
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Roboto Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" />
+
+    <!-- MDK -->
+    <link type="text/css" href="{% static 'assets/vendor/material-design-kit.css' %}" rel="stylesheet" />
+
+    <!-- Sidebar Collapse -->
+    <link type="text/css" href="{% static 'assets/vendor/sidebar-collapse.min.css' %}" rel="stylesheet" />
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+</head>
+
+<body class="login">
+    <div class="row">
+        <div class="col-sm-8 col-md-4 col-lg-4 mx-auto">
+            <div class="text-center m-2">
+                <div class="icon-block rounded-circle">
+                    <i class="material-icons align-middle md-36 text-muted">lock</i>
+                </div>
+            </div>
+            <div class="card bg-transparent">
+                <div class="card-header bg-white text-center">
+                    <h4 class="card-title">Login</h4>
+                    <p class="card-subtitle">Access your account</p>
+                </div>
+                <div class="card-body">
+                    <form action="#" method="get">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" placeholder="Email Address" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password" placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="login_btn" class="btn btn-primary btn-block">
+                  <span class="btn-block-text">Login</span>
+                </button>
+                        </div>
+                        <div class="text-center">
+                            <a href="#"><small>Forgot Password?</small></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    Not yet a student? <a href="/signup">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+
+    <!-- Sidebar Collapse -->
+    <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
+
+    <!-- App JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'js/setCookies.js' %}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(() => {
+            $("#login_btn").click(() => {
+                const email = $("#email").val();
+                const password = $("#password").val();
+                const data = {
+                    email: email,
+                    password: password,
+                };
+                if (email == "" || password == "") {
+                    toastr["warning"]("Missing value", "Email or Password");
+                } else if (validateEmail(email) == false) {
+                    toastr["warning"]("Email is wrong format", "Email");
+                } else {
+                    $.ajax({
+                        url: "http://localhost:8000/api/login",
+                        type: "POST",
+                        data: data,
+                        success: (data) => {
+                            if (data.status == "200") {
+                                toastr["success"](`${data.mess}`, "Login");
+                                sessionStorage.setItem("token", data.token);
+
+                                function setCookie(cname, cvalue, exdays) {
+                                    const d = new Date();
+                                    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+                                    let expires = "expires=" + d.toUTCString();
+                                    document.cookie =
+                                        cname + "=" + cvalue + ";" + expires + ";path=/";
+                                }
+                                setCookie("token", data.token);
+                                setTimeout(() => {
+                                    if (data.author == true) {
+                                        window.location.replace("/instructor/dashboard");
+                                    } else {
+                                        alert("binh thuong");
+                                    }
+                                }, 3000);
+                            } else {
+                                toastr["error"](`${data.mess}`);
+                            }
+                        },
+                        error: (data) => {
+                            console.error(data);
+                        },
+                    });
+                }
+            });
+        });
+
+        function validateEmail($email) {
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            return emailReg.test($email);
+        }
+    </script>
+</body>
+
+</html>

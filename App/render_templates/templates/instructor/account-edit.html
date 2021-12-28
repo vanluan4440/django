@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from learnplus.frontendmatter.com/instructor-account-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:58 GMT -->
+
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Instructor</title>
+
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex" />
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet" />
+
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Roboto Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" />
+
+    <!-- MDK -->
+    <link type="text/css" href="{% static 'assets/vendor/material-design-kit.css' %}" rel="stylesheet" />
+
+    <!-- Sidebar Collapse -->
+    <link type="text/css" href="{% static 'assets/vendor/sidebar-collapse.min.css' %}" rel="stylesheet" />
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="d-flex flex-column h-100">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-dark bg-primary m-0">
+            <!-- Toggle sidebar -->
+            <button class="navbar-toggler d-block" data-toggle="sidebar" type="button">
+          <span class="material-icons">menu</span>
+        </button>
+
+            <!-- Brand -->
+            <a href="/instructor/dashboard" class="navbar-brand"><i class="material-icons">school</i> Thi trắc nghiệm online</a
+        >
+
+        <div class="navbar-spacer"></div>
+
+        <!-- Menu -->
+
+        <!-- Menu -->
+        <ul class="nav navbar-nav">
+          <!-- User dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link active dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+              ><img
+                src="{% static 'assets/images/people/50/guy-6.jpg' %}"
+                alt="Avatar"
+                class="rounded-circle"
+                width="40"
+            /></a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="/instructor/profile">
+                    <i class="material-icons">person</i> Profile
+                </a>
+                <a class="dropdown-item" href="/instructor/edit/account/14">
+                    <i class="material-icons">edit</i> Edit Account
+                </a>
+                <a class="dropdown-item" href="guest-login.html">
+                    <i class="material-icons">lock</i> Logout
+                </a>
+            </div>
+            </li>
+            <!-- // END User dropdown -->
+            </ul>
+        </nav>
+        <!-- // END Navbar -->
+
+        <div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region>
+            <div class="
+            mdk-drawer-layout__content mdk-drawer-layout__content--scrollable
+          ">
+                <div class="container-fluid">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/instructor/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Edit Account</li>
+                    </ol>
+
+                    <div class="card">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#first" data-toggle="tab">Account</a
+                  >
+                </li>
+              </ul>
+              <div class="tab-content card-body">
+                <div class="tab-pane active" id="first">
+                  <form action="#" class="form-horizontal">
+                    <div class="form-group row">
+                      <label for="avatar" class="col-sm-3 col-form-label"
+                        >Avatar</label
+                      >
+                      <div class="col-sm-9">
+                        <div class="media">
+                          <div class="media-left">
+                            <div class="icon-block rounded">
+                              <i class="material-icons text-muted-light md-36"
+                                >photo</i
+                              >
+                            </div>
+                          </div>
+                          <div class="media-body media-middle">
+                            <label class="custom-file m-0">
+                              <input type="file" id="file" />
+                              <span class="custom-file-control"></span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="name" class="col-sm-3 col-form-label"
+                        >Full Name</label
+                      >
+                      <div class="col-sm-8">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="First Name"
+                              value="Adrian"
+                            />
+                          </div>
+                          <div class="col-md-6">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Last Name"
+                              value="Demian"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="email" class="col-sm-3 col-form-label"
+                        >Email</label
+                      >
+                      <div class="col-sm-6 col-md-6">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">
+                            <i class="material-icons md-18 text-muted">mail</i>
+                          </span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Email Address"
+                            value="contact@mosaicpro.biz"
+                            disabled
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="website" class="col-sm-3 col-form-label"
+                        >Website</label
+                      >
+                      <div class="col-sm-6 col-md-4">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon2">
+                            <i class="material-icons md-18 text-muted"
+                              >language</i
+                            >
+                          </span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="www."
+                            value="learning.themekit.io"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="password" class="col-sm-3 col-form-label"
+                        >Change Password</label
+                      >
+                      <div class="col-sm-6 col-md-4">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon3">
+                            <i class="material-icons md-18 text-muted">lock</i>
+                          </span>
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Enter new password"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-8 offset-sm-3">
+                        <div class="media">
+                          <div class="media-left">
+                            <a href="#" class="btn btn-success">Save Changes</a>
+                    </div>
+                    <div class="media-body media-middle pl-1">
+                        <label class="custom-control custom-checkbox m-0">
+                              <input
+                                type="checkbox"
+                                class="custom-control-input"
+                                checked
+                              />
+                              <span class="custom-control-indicator"></span>
+                              <span class="custom-control-description"
+                                >Subscribe to Newsletter</span
+                              >
+                            </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <!--  -->
+
+    <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+        <div class="mdk-drawer__content">
+            <div class="
+                sidebar sidebar-left sidebar-light sidebar-transparent-sm-up
+                o-hidden
+              ">
+                <div class="sidebar-p-y" data-simplebar data-simplebar-force-enabled="true">
+                    <ul class="sidebar-menu">
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-courses.html">
+                                <i class="material-icons">class</i> Quản lí lớp
+                            </a>
+                        </li>
+                        <li class="sidebar-menu-item">
+                            <a class="sidebar-menu-button" href="instructor-courses.html">
+                                <i class="
+                          sidebar-menu-icon sidebar-menu-icon--left
+                          material-icons
+                        ">import_contacts</i
+                      >
+                      Quản lí khóa học
+                    </a>
+                  </li>
+                  <li class="sidebar-menu-item">
+                    <a
+                      class="sidebar-menu-button"
+                      href="instructor-quizzes.html"
+                    >
+                      <i
+                        class="
+                          sidebar-menu-icon sidebar-menu-icon--left
+                          material-icons
+                        "
+                        >help</i
+                      >
+                      Quản lí bài kiểm tra
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+
+    <!-- Sidebar Collapse -->
+    <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
+
+    <!-- App JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+
+  <!-- Mirrored from learnplus.frontendmatter.com/instructor-account-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:59 GMT -->
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from learnplus.frontendmatter.com/guest-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:42:25 GMT -->
+
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Signup</title>
+
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet" />
+
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Roboto Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" />
+
+    <!-- MDK -->
+    <link type="text/css" href="{% static 'assets/vendor/material-design-kit.css' %}" rel="stylesheet" />
+
+    <!-- Sidebar Collapse -->
+    <link type="text/css" href="{% static 'assets/vendor/sidebar-collapse.min.css' %}" rel="stylesheet" />
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+</head>
+
+<body class="login">
+    <div class="row">
+        <div class="col-sm-8 col-md-4 col-lg-4 mx-auto">
+            <div class="text-center m-2">
+                <div class="icon-block rounded-circle">
+                    <i class="material-icons align-middle md-36 text-muted">edit</i>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header bg-white text-center">
+                    <h4 class="card-title">Sign Up</h4>
+                    <p class="card-subtitle">Create a new account</p>
+                </div>
+                <div class="card-body">
+                    <form action="#" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" id="username" />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" id="email" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Phone number" maxlength="10" id="phone" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" id="password" />
+                        </div>
+                        <div class="form-group text-center">
+                            <label class="custom-control custom-checkbox m-0">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="check"
+                  />
+                  <span class="custom-control-indicator"></span>
+                  Instructor
+                </label>
+                        </div>
+                        <p class="text-center">
+                            <button type="button" class="btn btn-primary btn-block" id="signup">
+                  <span class="btn-block-text">Sign Up</span>
+                </button>
+                        </p>
+                        <div class="text-center">
+                            Already signed up? <a href="/login">Log in</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+
+    <!-- Sidebar Collapse -->
+    <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
+
+    <!-- App JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'js/setCookies.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+<!-- Mirrored from learnplus.frontendmatter.com/guest-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:42:25 GMT -->
+
+</html>
+<script>
+    $(document).ready(() => {
+        $("#signup").click(() => {
+            const username = $("#username").val();
+            const email = $("#email").val();
+            const password = $("#password").val();
+            const phone = $("#phone").val();
+            const author = $("#check").is(":checked");
+
+            const data = {
+                username,
+                email,
+                password,
+                phone,
+                author,
+            };
+            if (username == "" || email == "" || password == "" || phone == "") {
+                toastr["warning"]("Missing value", "Form");
+            } else {
+                $.ajax({
+                    url: "http://localhost:8000/api/register",
+                    data: {
+                        username: username,
+                        password: password,
+                        email: email,
+                        phone: phone,
+                        author: author,
+                    },
+                    type: "POST",
+                    success: (data) => {
+                        toastr["info"](`${data.mess}`);
+                    },
+                    error: (data) => {
+                        console.error(data);
+                    },
+                });
+            }
+        });
+    });
+</script>

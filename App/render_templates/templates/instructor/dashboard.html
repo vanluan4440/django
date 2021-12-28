@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from learnplus.frontendmatter.com/instructor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:12 GMT -->
+
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Instructor</title>
+
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex" />
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet" />
+
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Roboto Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" />
+
+    <!-- MDK -->
+    <link type="text/css" href="{% static 'assets/vendor/material-design-kit.css' %}" rel="stylesheet" />
+
+    <!-- Sidebar Collapse -->
+    <link type="text/css" href="{% static 'assets/vendor/sidebar-collapse.min.css' %}" rel="stylesheet" />
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/morris.css' %}" />
+</head>
+
+<body>
+    <div class="d-flex flex-column h-100">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-dark bg-primary m-0">
+            <!-- Toggle sidebar -->
+            <button class="navbar-toggler d-block" data-toggle="sidebar" type="button">
+          <span class="material-icons">menu</span>
+        </button>
+
+            <!-- Brand -->
+            <a href="/instructor/dashboard" class="navbar-brand"><i class="material-icons">school</i> Thi trắc nghiệm online</a
+        >
+
+        <div class="navbar-spacer"></div>
+
+        <!-- Menu -->
+        <ul class="nav navbar-nav d-none d-md-flex"></ul>
+
+        <!-- Menu -->
+        <ul class="nav navbar-nav">
+          <!-- User dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link active dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+              ><img
+                src="{% static 'assets/images/people/50/guy-6.jpg' %}"
+                alt="Avatar"
+                class="rounded-circle"
+                width="40"
+            /></a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="/instructor/profile">
+                    <i class="material-icons">person</i> Profile
+                </a>
+                <a class="dropdown-item" href="/instructor/edit/account/14">
+                    <i class="material-icons">edit</i> Edit Account
+                </a>
+                <a class="dropdown-item" href="guest-login.html">
+                    <i class="material-icons">lock</i> Logout
+                </a>
+            </div>
+            </li>
+            <!-- // END User dropdown -->
+            </ul>
+        </nav>
+        <!-- // END Navbar -->
+
+        <div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region>
+            <div class="
+            mdk-drawer-layout__content mdk-drawer-layout__content--scrollable
+          ">
+                <div class="container-fluid">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/instructor/dashboard">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                    <div class="row">
+                        <div class="col-12">
+                            <button class="btn btn-primary">Thêm lớp học</button>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-8">
+                            <div class="card">
+                                <div class="card-header bg-white">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4 class="card-title">Lớp</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="list-group list-group-fit mb-0">
+                                    <li class="list-group-item">
+                                        <div class="media">
+                                            <div class="media-body media-middle">
+                                                <a href="instructor-course-edit.html">Basics of HTML</a
+                          >
+                        </div>
+                        <div class="media-right media-middle">
+                          <div class="text-center">
+                            <span class="badge badge-pill badge-primary"
+                              >15</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="media">
+                        <div class="media-body media-middle">
+                          <a href="instructor-course-edit.html"
+                            >Angular in Steps</a
+                          >
+                        </div>
+                        <div class="media-right media-middle">
+                          <div class="text-center">
+                            <span class="badge badge-pill badge-success"
+                              >50</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="media">
+                        <div class="media-body media-middle">
+                          <a href="instructor-course-edit.html"
+                            >Bootstrap Foundations</a
+                          >
+                        </div>
+                        <div class="media-right media-middle">
+                          <div class="text-center">
+                            <span class="badge badge-pill badge-warning"
+                              >14</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="media">
+                        <div class="media-body media-middle">
+                          <a href="instructor-course-edit.html"
+                            >GitHub Basics</a
+                          >
+                        </div>
+                        <div class="media-right media-middle">
+                          <div class="text-center">
+                            <span class="badge badge-pill badge-danger"
+                              >14</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+          <div class="mdk-drawer__content">
+            <div
+              class="
+                sidebar sidebar-left sidebar-light sidebar-transparent-sm-up
+                o-hidden
+              "
+            >
+              <div
+                class="sidebar-p-y"
+                data-simplebar
+                data-simplebar-force-enabled="true"
+              >
+                <ul class="sidebar-menu">
+                  <li class="sidebar-menu-item">
+                    <a
+                      class="sidebar-menu-button"
+                      href="instructor-courses.html"
+                    >
+                      <i class="material-icons">class</i> Quản lí lớp
+                    </a>
+                                    </li>
+                                    <li class="sidebar-menu-item">
+                                        <a class="sidebar-menu-button" href="instructor-courses.html">
+                                            <i class="
+                          sidebar-menu-icon sidebar-menu-icon--left
+                          material-icons
+                        ">import_contacts</i
+                      >
+                      Quản lí khóa học
+                    </a>
+                  </li>
+                  <li class="sidebar-menu-item">
+                    <a
+                      class="sidebar-menu-button"
+                      href="instructor-quizzes.html"
+                    >
+                      <i
+                        class="
+                          sidebar-menu-icon sidebar-menu-icon--left
+                          material-icons
+                        "
+                        >help</i
+                      >
+                      Quản lí bài kiểm tra
+                    </a>
+                  </li>
+                </ul>
+                <!-- // END Components Menu -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+
+    <!-- Sidebar Collapse -->
+    <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
+
+    <!-- App JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <!-- Theme Colors -->
+    <script src="{% static 'assets/js/colors.js' %}"></script>
+
+    <!-- Morris.js charts -->
+    <script src="{% static 'assets/vendor/raphael.min.js' %}"></script>
+
+    <!-- Moment.js -->
+    <script src="{% static 'assets/vendor/moment.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/moment-range.min.js' %}"></script>
+    <script src="{% static 'js/setCookies.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Last 30 days earnings chart -->
+  </body>
+
+  <!-- Mirrored from learnplus.frontendmatter.com/instructor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:50 GMT -->
+</html>
