@@ -6,5 +6,5 @@ class Class_A(models.Model):
     img = models.CharField(max_length=255)
     desc =  models.CharField(max_length=255)
     course =  models.JSONField(encoder=None)
-    created_on = models.DateTimeField()
+    created_on = models.DateField()
     createdBy = models.IntegerField()

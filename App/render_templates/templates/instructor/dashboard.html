@@ -119,55 +119,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <ul class="nestable-list">
-                                <li class="list-group-item mt-1">
-                                    <div class="nestable-content">
-                                        <div class="media">
-                                            <div class="media-left media-middle">
-                                                <img src="{% static 'assets/images/vuejs.png' %}" alt="" width="100" class="rounded" />
-                                            </div>
-                                            <div class="media-body media-middle">
-                                                <h5 class="card-title h6 mb-0">
-                                                    <a href="fixed-instructor-lesson-add.html">Awesome Vue.js with SASS Processing</a
-                            >
-                          </h5>
-                          <small class="text-muted">updated 1 month ago</small>
+                            <ul class="nestable-list"></ul>
                         </div>
-                        <div class="media-right media-middle">
-                          <a class="btn btn-success btn-sm"
-                            ><i class="material-icons">edit</i></a
-                          >
-                          <a class="btn btn-danger btn-sm"
-                            ><span class="material-icons"> delete </span></a
-                          >
-                        </div>
-                      </div>
                     </div>
-                  </li>
-                </ul>
-              </div>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
-          <div class="mdk-drawer__content">
-            <div
-              class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up o-hidden"
-            >
-              <div
-                class="sidebar-p-y"
-                data-simplebar
-                data-simplebar-force-enabled="true"
-              >
-                <ul class="sidebar-menu">
-                  <li class="sidebar-menu-item">
-                    <a
-                      class="sidebar-menu-button"
-                      href="instructor-courses.html"
-                    >
-                      <i class="material-icons">class</i> Quản lí lớp
-                    </a>
+            <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+                <div class="mdk-drawer__content">
+                    <div class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up o-hidden">
+                        <div class="sidebar-p-y" data-simplebar data-simplebar-force-enabled="true">
+                            <ul class="sidebar-menu">
+                                <li class="sidebar-menu-item">
+                                    <a class="sidebar-menu-button" href="instructor-courses.html">
+                                        <i class="material-icons">class</i> Quản lí lớp
+                                    </a>
                                 </li>
                                 <li class="sidebar-menu-item">
                                     <a class="sidebar-menu-button" href="instructor-courses.html">
@@ -257,6 +223,7 @@
               </div>
             </form>
           </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="save">
               Save
@@ -305,6 +272,23 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
+      function deleteitem(id) {
+        $.ajax({
+          url: `http://localhost:8000/class/delete/${id}`,
+          type: "get",
+          success: () => {
+            toastr["success"]("delete success");
+            setTimeout(() => {
+              window.location.reload();
+            }, 1500);
+          },
+          error: () => {
+            toastr["error"]("Error");
+          },
+        });
+      }
+    </script>
+    <script>
       $(document).ready((e) => {
         $("#save").click(() => {
           const ins = document.getElementById("multiFiles").files.length;
@@ -331,12 +315,6 @@
             let form_data = new FormData();
             form_data.append("title", $("#title").val());
             form_data.append("desc", $("#desc").val());
-            // for (var x = 0; x < ins; x++) {
-            //   form_data.append(
-            //     "files[]",
-            //     document.getElementById("multiFiles").files[x]
-            //   );
-            // }
             form_data.append("img", $("#multiFiles")[0].files[0]);
 
             $.ajax({
@@ -347,14 +325,72 @@
               processData: false,
               data: form_data,
               type: "post",
-              success: (res) => {
-                console.log(res);
+              success: (data) => {
+                if (data.responseText == "created") {
+                  toastr["success"]("Create success");
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 4000);
+                } else {
+                  toastr["error"]("Error");
+                }
               },
-              error: (res) => {
-                console.log(res);
+              error: (data) => {
+                if (data.responseText == "created") {
+                  toastr["success"]("Create success");
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 1500);
+                } else {
+                  toastr["error"]("Error");
+                }
               },
             });
           }
+        });
+
+        $.ajax({
+          type: "GET",
+          url: "http://localhost:8000/class/getClassByUser",
+          success: (data) => {
+            const Class_a = data["ClassByUser"];
+            Class_a.forEach((element) => {
+              let img = element["img"];
+
+              let li = `
+              <li class="list-group-item mt-1">
+                                    <div class="nestable-content">
+                                        <div class="media">
+                                            <div class="media-left media-middle">
+                                                <img src="../../../static/${element["img"]}" alt="" width="100" class="rounded" />
+                                            </div>
+                                            <div class="media-body media-middle">
+                                                <h5 class="card-title h6 mb-0">
+                                                    <a >${element.title}</a
+                            >
+                          </h5>
+                          <small class="text-muted">${element["desc"]}</small>
+                          </br>
+                          <small class="text-muted">${element["created_on"]}</small>
+                        </div>
+                        <div class="media-right media-middle">
+                          <a class="btn btn-success btn-sm"
+                            ><i class="material-icons">edit</i></a>
+
+                                    <button onclick="deleteitem(${element.id})" class="btn btn-danger btn-sm"><span class="material-icons"> delete </span></button
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+              
+              `;
+              $(".nestable-list").append(li);
+            });
+          },
+          error: (data) => {
+            console.log(data);
+          },
         });
       });
     </script>
