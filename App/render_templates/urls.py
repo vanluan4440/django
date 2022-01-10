@@ -12,6 +12,9 @@ urlpatterns = [
     path('instructor/profile',views.InstructorProfile, name='InstructorProfile'),
     #edit account
     path('instructor/edit/account/<int:id>',views.InstructorEditAccount, name='InstructorEditAccount'),
+
+    #create class
+    path('instructor/create-class',views.CreateClass, name='CreateClass'),
     
    
 ]

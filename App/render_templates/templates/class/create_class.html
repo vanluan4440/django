@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from learnplus.frontendmatter.com/fixed-instructor-course-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:42:41 GMT -->
+
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Instructor</title>
+
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex" />
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet" />
+
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Roboto Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" />
+
+    <!-- MDK -->
+    <link type="text/css" href="{% static 'assets/vendor/material-design-kit.css' %}" rel="stylesheet" />
+
+    <!-- Sidebar Collapse -->
+    <link type="text/css" href="{% static 'assets/vendor/sidebar-collapse.min.css' %}" rel="stylesheet" />
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <!-- Bootstrap Datepicker -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-datepicker.css' %}" />
+    <!-- Summernote WYSIWYG -->
+    <link rel="stylesheet" href="{% static 'assets/css/summernote.css' %}" />
+    <!-- Nestable -->
+    <link rel="stylesheet" href="{% static 'assets/css/nestable.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .warn {
+            border: 2px solid rgb(231, 69, 69);
+        }
+        
+        .success {
+            border: 2px solid rgb(41, 168, 69);
+        }
+    </style>
+</head>
+
+<body class="ls-top-navbar">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-dark bg-primary m-0 fixed-top">
+        <!-- Toggle sidebar -->
+
+        </button>
+
+        <!-- Brand -->
+        <a href="/instructor/dashboard" class="navbar-brand"><i class="material-icons">school</i> Thi Trắc Nghiệm online</a
+      >
+
+      <div class="navbar-spacer"></div>
+
+      <!-- Menu -->
+      <ul class="nav navbar-nav">
+        <!-- User dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link active dropdown-toggle"
+            data-toggle="dropdown"
+            href="#"
+            role="button"
+            ><img
+              src="{% static 'assets/images/people/50/guy-6.jpg' %}"
+              alt="Avatar"
+              class="rounded-circle"
+              width="40"
+          /></a>
+        <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="/instructor/profile">
+                <i class="material-icons">person</i> Profile
+            </a>
+            <a class="dropdown-item" href="/instructor/edit/account/14">
+                <i class="material-icons">edit</i> Edit Account
+            </a>
+            <a class="dropdown-item" href="guest-login.html">
+                <i class="material-icons">lock</i> Logout
+            </a>
+        </div>
+        </li>
+        <!-- // END User dropdown -->
+        </ul>
+    </nav>
+    <!-- // END Navbar -->
+
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/instructor/dashboard">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>Class</a>
+            </li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+        <div class="media">
+            <div class="media-body">
+                <h1 class="page-heading h2">CREATE CLASS</h1>
+            </div>
+            <div class="media-right media-middle">
+                <button class="btn btn-success" id="btn_save">SAVE</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Basic Information</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="Write a title" />
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Image</label>
+                            <input type="text" class="form-control" id="img" placeholder="Link image" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="details">Description</label>
+                            <textarea name="" id="summernote" cols="30" rows="10"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="card"> -->
+                <!-- <div class="card-header">
+                        <h4 class="card-title">Course</h4>
+                    </div> -->
+                <!-- <div class="card-body"> -->
+                <!-- <p>
+                            <a href="fixed-instructor-lesson-add.html" class="btn btn-primary">Add course <i class="material-icons">add</i></a
+                >
+              </p> -->
+                <!-- <div class="nestable" id="nestable-handles-primary"> -->
+                <!-- <ul class="nestable-list">
+                  <li class="nestable-item nestable-item-handle" data-id="2">
+                    
+                    <div class="nestable-content" style="margin-left: 0px;">
+                      <div class="media">
+                        <div class="media-left media-middle">
+                          <img
+                            src="{% static 'assets/images/vuejs.png' %}"
+                            alt=""
+                            width="100"
+                            class="rounded"
+                          />
+                        </div>
+                        <div class="media-body media-middle">
+                          <h5 class="card-title h6 mb-0">
+                            <a href="fixed-instructor-lesson-add.html"
+                              >Awesome Vue.js with SASS Processing</a
+                            >
+                          </h5>
+                          <small class="text-muted">updated 1 month ago</small>
+                        </div>
+                        <div class="media-right media-middle">
+                          <a
+                            href="fixed-instructor-lesson-add.html"
+                            class="btn btn-white btn-sm"
+                            ><i class="material-icons">edit</i></a
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  
+                  
+                </ul> -->
+                <!-- </div> -->
+                <!-- </div> -->
+                <!-- </div> -->
+            </div>
+            <div class="col-md-4">
+                <!-- <div class="card">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe
+                class="embed-responsive-item"
+                src="https://player.vimeo.com/video/97243285?title=0&amp;byline=0&amp;portrait=0"
+                allowfullscreen=""
+              ></iframe>
+            </div>
+            <div class="card-body">
+              <input
+                type="text"
+                class="form-control"
+                value="https://player.vimeo.com/video/97243285?title=0&amp;byline=0&amp;portrait=0"
+              />
+            </div>
+          </div> -->
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Meta</h4>
+                        <p class="card-subtitle">Extra Options</p>
+                    </div>
+
+                    <form class="form-horizontal card-body">
+                        <div class="form-group row">
+
+                        </div>
+                        <div class="form-group row">
+
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="start" class="col-sm-6 col-form-label">Start Date</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    class="datepicker form-control"
+                    type="text"
+                    value="01/28/2021"
+                    id="start_day"
+                  />
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="end" class="col-sm-6 col-form-label"
+                  >End Date</label
+                >
+                <div class="col-sm-6">
+                  <input
+                    class="datepicker form-control"
+                    type="text"
+                    value="01/28/2021"
+                    id="end_day"
+                  />
+                </div>
+              </div>
+
+              
+            </form>
+          </div>
+        </div>
+      </div>
+
+     
+
+      
+    </div>
+    
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+
+    <!-- Sidebar Collapse -->
+    <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
+
+    <!-- App JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <!-- Vendor JS -->
+    <script src="{% static 'assets/vendor/summernote.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jquery.nestable.js' %}"></script>
+
+    <!-- Init -->
+    <script src="{% static 'assets/js/summernote.js' %}"></script>
+    <script src="{% static 'assets/js/date-time.js' %}"></script>
+    <script src="{% static 'assets/js/nestable.js' %}"></script>
+    <script src="{% static 'js/setCookies.js' %}"></script>
+    <script>
+      $(document).ready(()=>{
+        $('#btn_save').click(()=>{
+           const title = $('#title').val()
+           const img = $('#img').val()
+           const desc =$('#summernote').val()
+           const startDay = $('#start_day').val()
+           const endDay = $('#end_day').val()
+           
+
+           
+           if(title ==''){
+            $('#title').addClass('warn')
+            $('#title').removeClass("success");
+           }
+           else{
+            $('#title').addClass('success')
+            $('#title').removeClass("warn");
+           }
+           if(img ==''){
+            $('#img').addClass('warn')
+            $('#img').removeClass("success");
+           }
+           else{
+            $('#img').addClass('success')
+            $('#img').removeClass("warn");
+           }
+           if(desc ==''){
+            $('#desc').removeClass("success");
+            $('#desc').addClass('warn')
+           }
+           else{
+            $('#desc').addClass('success')
+            $('#desc').removeClass("warn");
+           }
+           if(startDay ==''){
+            $('#start_day').addClass('warn')
+            $('#start_day').removeClass("success");
+           }
+           else{
+            $('#start_day').addClass('success')
+            $('#start_day').removeClass("warn");
+           }
+           if(endDay ==''){
+            $('#end_day').addClass('warn')
+            $('#end_day').removeClass("success");
+           }
+           else{
+            $('#end_day').addClass('success')
+            $('#end_day').removeClass("warn");
+           }
+           if(title != '' && img !=''&& startDay!=''&&endDay!=''){
+            
+            const data = {
+              title,
+              img,
+              desc,
+              startDay,
+              endDay
+            }
+            console.log(data);
+            $.ajax({
+              url:'http://localhost:8000/class/create',
+              type: 'POST',
+              data: data,
+              success:(data)=>{
+                console.log(data);
+              },
+              error:(data)=>{
+                console.log(data);
+              }
+            })
+           }
+           
+        })
+      })
+    </script>
+  </body>
+
+  <!-- Mirrored from learnplus.frontendmatter.com/fixed-instructor-course-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:42:41 GMT -->
+</html>

@@ -10,24 +10,27 @@ import json
 #create class
 def create(request):
     if request.method == 'POST':
-        if not 'title' in request.POST:
-            return HttpResponse('title not found', status=400)
-        elif not 'img' in request.POST:
-            return HttpResponse('image not found', status=400)
-        elif not 'desc' in request.POST:
-            return HttpResponse('desc not found', status=400)
-        elif not 'course' in request.POST:
-            return HttpResponse('course not found', status=400)
+        print(request.FILES.get('img'))
+        print(request.POST.get('title'))
+       
+        return HttpResponse('created')
+        # if not 'title' in request.POST:
+        #     return HttpResponse('title not found', status=400)
+        # elif not 'img' in request.POST:
+        #     return HttpResponse('image not found', status=400)
+        # elif not 'desc' in request.POST:
+        #     return HttpResponse('desc not found', status=400)
         
-        else:
-            title = request.POST['title']
-            img = request.POST['img']
-            desc = request.POST['desc']
-            course = request.POST['course']
-            now = datetime.now()
-            dataClass = Class_A(title = title, img= img, desc= desc,created_on=now,course=[course])
-            dataClass.save()
-            return HttpResponse('created', status=200)
+        # else:
+        #     title = request.POST['title']
+        #     img = request.POST['img']
+        #     desc = request.POST['desc']
+        #     course = []
+        #     now = datetime.now()
+        #     dataClass = Class_A(title = title, img= img, desc= desc,created_on=now,course=course,createdBy=18)
+        #     print(dataClass)
+        #     dataClass.save()
+        #     return HttpResponse('created', status=200)
     else:
         return HttpResponse('no support', status=500)
 

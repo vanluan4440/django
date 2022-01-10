@@ -7,3 +7,4 @@ class Class_A(models.Model):
     desc =  models.CharField(max_length=255)
     course =  models.JSONField(encoder=None)
     created_on = models.DateTimeField()
+    createdBy = models.IntegerField()
