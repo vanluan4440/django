@@ -7,5 +7,5 @@ class course(models.Model):
     desc = models.CharField(max_length=255)
     img = models.CharField(max_length=255)
     lesson = models.JSONField(encoder=None)
-    create_on = models.DateTimeField()
+    create_on = models.DateField()
     create_by = models.CharField(max_length=255)

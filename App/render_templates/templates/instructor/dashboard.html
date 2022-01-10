@@ -287,6 +287,11 @@
           },
         });
       }
+      function detail(id) {
+        window.location.replace(
+          `http://localhost:8000/instructor/detail?class=${id}`
+        );
+      }
     </script>
     <script>
       $(document).ready((e) => {
@@ -358,7 +363,9 @@
               let img = element["img"];
 
               let li = `
-              <li class="list-group-item mt-1">
+            
+              <li class="list-group-item mt-1" onclick="detail(${element["id"]})">
+                 
                                     <div class="nestable-content">
                                         <div class="media">
                                             <div class="media-left media-middle">
@@ -374,16 +381,17 @@
                           <small class="text-muted">${element["created_on"]}</small>
                         </div>
                         <div class="media-right media-middle">
-                          <a class="btn btn-success btn-sm"
-                            ><i class="material-icons">edit</i></a>
+                          
+                                   
 
                                     <button onclick="deleteitem(${element.id})" class="btn btn-danger btn-sm"><span class="material-icons"> delete </span></button
                           >
                         </div>
                       </div>
                     </div>
+                  
                   </li>
-              
+                
               `;
               $(".nestable-list").append(li);
             });

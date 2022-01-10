@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse,JsonResponse
+
+
 # Connect to the database
 from .models import Class_A
 import os
@@ -57,25 +59,10 @@ def delete(request,id):
     return HttpResponse('deleted', status=200)
     
 
-def edit(request):
+def edit(request,id,title,desc):
     if request.method == 'POST':
-
-        if not 'title' in request.POST:
-            return HttpResponse('title not found', status=400)
-        elif not 'img' in request.POST:
-            return HttpResponse('image not found', status=400)
-        elif not 'id' in request.POST:
-            return HttpResponse('id not found', status=400)
-        elif not 'desc' in request.POST:
-            return HttpResponse('desc not found', status=400)
-        else:
-            title = request.POST['title']
-            img = request.POST['img']
-            desc = request.POST['desc']
-            id= request.POST['id']
-            now = date.today()
-            dataClass = Class_A.objects.filter(id=id).update(title=title,img=img,desc=desc,created_on=now)
-            return HttpResponse('updated', status=200)
+        dataClass = Class_A.objects.filter(id=id).update(title=title,desc=desc)
+        return HttpResponse('updated', status=200)
     else:
         return HttpResponse('no support', status=500)
 
@@ -100,3 +87,8 @@ def getClassByUser(request):
         return HttpResponse('unauthentication', status = 400)
     data = Class_A.objects.filter(createdBy= payload['id']).values()
     return JsonResponse({'ClassByUser': list(data)})
+def addCourse(request,idclass,idcourse):
+    course_a = list(Class_A.objects.filter(id=idclass).values())[0]['course']
+    course_a.append({'idcourse': idcourse})
+    Class_A.objects.filter(id=idclass).update(course =course_a )
+    return HttpResponse(status=200)
