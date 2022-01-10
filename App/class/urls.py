@@ -11,6 +11,7 @@ urlpatterns = [
     path('getOnly',views.getOnly, name='getOnly_class'),
     path('getClassByUser',views.getClassByUser, name='getClassByUser'),
     path('addCourse/<int:idclass>/<int:idcourse>',views.addCourse, name='addCourse'),
+    path('deleteCourse/<int:idclass>/<int:idcourse>',views.deleteCourse, name='deleteCourse'),
    
 ]
 

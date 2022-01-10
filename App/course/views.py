@@ -34,17 +34,9 @@ def create(request):
         return JsonResponse({'idCourse':idcourse})
     else:
         return HttpResponse('none support', status=400)
-def delete(request):
-    session = request.session.get('user')
-    if session == None:
-        return HttpResponse('unauthorized', status=401)
-    else:
-        if not 'id' in request.POST:
-            return HttpResponse('id not found',status=400)
-        else:
-            id = request.POST['id']
-            course.objects.filter(id=id).delete()
-            return HttpResponse('deleted', status=200)
+def delete(request,id):
+    course.objects.filter(id=id).delete()
+    return HttpResponse('deleted', status=200)
 def edit(request):
     if request.method == 'POST':
         if not 'title' in request.POST:

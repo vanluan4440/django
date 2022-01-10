@@ -3,6 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.http import HttpResponse,JsonResponse
 
+from course.models import course
+
 
 # Connect to the database
 from .models import Class_A
@@ -92,3 +94,11 @@ def addCourse(request,idclass,idcourse):
     course_a.append({'idcourse': idcourse})
     Class_A.objects.filter(id=idclass).update(course =course_a )
     return HttpResponse(status=200)
+def deleteCourse(resquest,idclass,idcourse):
+    course_a = list(Class_A.objects.filter(id=idclass).values())[0]['course']
+    new_array = []
+    for i in course_a:
+        if i['idcourse'] != idcourse:
+            new_array.append(i)
+    Class_A.objects.filter(id=idclass).update(course=new_array)
+    return HttpResponse('delete')

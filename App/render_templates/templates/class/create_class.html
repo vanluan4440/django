@@ -272,6 +272,35 @@
         <script src="{% static 'assets/js/nestable.js' %}"></script>
         <script src="{% static 'js/setCookies.js' %}"></script>
         <script>
+            function deleteItem(id) {
+                let searchParams = new URLSearchParams(window.location.search)
+                let param = searchParams.get('class')
+                $.ajax({
+                    url: `http://localhost:8000/class/deleteCourse/${param}/${id}`,
+                    type: 'get',
+                    success: () => {
+                        $.ajax({
+                            url: `http://localhost:8000/course/delete/${id}`,
+                            type: 'get',
+                            success: () => {
+                                window.location.reload()
+                            },
+                            error: (err) => {
+                                console.log(err);
+                            }
+
+                        })
+
+                    },
+                    error: (err) => {
+                        console.log(err);
+                    }
+
+
+                })
+            }
+        </script>
+        <script>
             $(document).ready(() => {
                 let searchParams = new URLSearchParams(window.location.search)
                 let param = searchParams.get('class')
@@ -316,10 +345,10 @@
                           <small class="text-muted">${data['create_on']}</small>
                         </div>
                         <div class="media-right media-middle">
-                          <a
-                            href="#"
+                          <button
+                            onclick="deleteItem(${data['id']})"
                             class="btn btn-danger btn-sm"
-                            ><i class="material-icons">delete</i></a
+                            ><i class="material-icons">delete</i></button
                           >
                         </div>
                       </div>

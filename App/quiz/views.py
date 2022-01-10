@@ -47,17 +47,9 @@ def edit(request):
         id = request.POST['id']
         quiz.objects.filter(id=id).update(question=question,type=type,answer=[answer],point=point,Rightanswer=Rightanswer)
         return HttpResponse('updated', status=200)
-def delete(request):
-    session = request.session.get('user')
-    if session == None:
-        return HttpResponse('unauthorized', status=401)
-    else:
-        if not 'id' in request.POST:
-            return HttpResponse('id not found',status=400)
-        else:
-            id = request.POST['id']
-            quiz.objects.filter(id=id).delete()
-            return HttpResponse('deleted', status=200)
+def delete(request,id):
+    quiz.objects.filter(id=id).delete()
+    return HttpResponse('deleted', status=200)
 def getDetail(request):
     if not 'id' in request.POST:
         return HttpResponse('id not found', status='400')
