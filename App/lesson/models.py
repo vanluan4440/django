@@ -11,3 +11,4 @@ class lesson(models.Model):
     file = models.FileField()
     quiz = models.JSONField(encoder=None)
     create_on = models.DateField()
+    create_by = models.IntegerField()

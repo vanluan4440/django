@@ -6,6 +6,6 @@ urlpatterns = [
     path('delete',views.delete, name='delete_lesson'),
     path('edit',views.edit, name='edit_lesson'),
     path('getAll',views.getAll, name='getAll_lesson'),
-    path('getOnly',views.getOnly, name='getOnly_lesson'),
+    path('getOnly/<int:id>',views.getOnly, name='getOnly_lesson'),
    
 ]

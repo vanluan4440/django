@@ -17,6 +17,9 @@ urlpatterns = [
 
     #create class
     path('instructor/detail',views.DetailClass, name='DetailClass'),
+
+    #create course
+    path('instructor/course',views.DatailCourse, name='DatailCourse'),
     
    
 ]

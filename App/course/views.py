@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from datetime import date
+import os
 # Create your views here.
 from django.http import HttpResponse,JsonResponse
+
+
 from .models import course
 
 import random
@@ -35,30 +38,25 @@ def create(request):
     else:
         return HttpResponse('none support', status=400)
 def delete(request,id):
-    course.objects.filter(id=id).delete()
+    data_course = course.objects.filter(id=id)
+    url  = 'static/{}'.format(list(data_course.values())[0]['img'])
+    os.remove("{}".format(url))
+    data_course.delete()
     return HttpResponse('deleted', status=200)
-def edit(request):
-    if request.method == 'POST':
-        if not 'title' in request.POST:
-            return HttpResponse('title not found', status=400)
-        elif not 'img' in request.POST:
-            return HttpResponse('image not found', status=400)
-        elif not 'desc' in request.POST:
-            return HttpResponse('desc not found', status=400)
-        elif not 'id' in request.POST:
-            return HttpResponse('id not found', status=400)
-        else:
-            title = request.POST['title']
-            img = request.POST['img']
-            desc = request.POST['desc']
-            id= request.POST['id']
-            course.objects.filter(id=id).update(title=title,desc=desc,img=img)
-            return HttpResponse('updated', status=200)
-    else:
-        return HttpResponse('no support', status=500)
+def edit(request,id,title,desc):
+   
+       
+    course.objects.filter(id=id).update(title=title,desc=desc)
+    return HttpResponse('updated', status=200)
+  
 def getAll(request):
     data_class = course.objects.all().values()
     return JsonResponse({"allCourse": list(data_class)})
 def getOnly(request,id):
     data_course = list(course.objects.filter(id=id).values())[0]
     return JsonResponse(data_course)
+def addLesson(request, idcourse, idlesson):
+    data = list(course.objects.filter(id=idcourse).values())[0]['lesson']
+    data.append({'idlesson': idlesson})
+    course.objects.filter(id=idcourse).update(lesson =data )
+    return HttpResponse(status=200)
