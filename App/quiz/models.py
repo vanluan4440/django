@@ -10,4 +10,5 @@ class quiz(models.Model):
     Rightanswer =  models.CharField(max_length=255)
     
     
+    
 

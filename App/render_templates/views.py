@@ -97,6 +97,22 @@ def DatailCourse(request):
         return redirect('/login')
     else:
         return render(request,template_name='course/create_course.html')
+def DatailLesson(request):
+    from django.middleware.csrf import get_token
+    get_token(request)
+    token = request.COOKIES.get('token')
+    
+    if not token:
+        return redirect('/login')
+    try:
+        payload = jwt.decode(token,'secret',algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        return redirect('/login')
+    user = User.objects.filter(id =payload['id'] ).count()
+    if user <1:
+        return redirect('/login')
+    else:
+        return render(request,template_name='lesson/create_quizz.html')
 
     
 

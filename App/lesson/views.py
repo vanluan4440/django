@@ -40,40 +40,23 @@ def create(request):
         return JsonResponse({'idLesson':idLesson})
     else:
         return HttpResponse('none support', status=400)
-def delete(request):
-    session = request.session.get('user')
-    if session == None:
-        return HttpResponse('unauthorized', status=401)
-    else:
-        if not 'id' in request.POST:
-            return HttpResponse('id not found',status=400)
-        else:
-            id = request.POST['id']
-            lesson.objects.filter(id=id).delete()
-            return HttpResponse('deleted', status=200)
-def edit(request):
-    if request.method == 'POST':
-        if not 'title' in request.POST:
-            return HttpResponse('not found title')
-        elif not 'img' in request.POST:
-            return HttpResponse('not found image')
-        elif not 'desc' in request.POST:
-            return HttpResponse('not found desc')
-        elif not 'file' in request.POST:
-            return HttpResponse('not found file')
-        elif not 'id' in request.POST:
-            return HttpResponse('id not found', status=400)
-        else:
-            title = request.POST['title']
-            img = request.POST['img']
-            desc = request.POST['desc']
-            file = request.POST['file']
-            id= request.POST['id']
-            lesson.objects.filter(id=id).update(title=title,desc=desc,img=img, file= file)
-            return HttpResponse('updated', status=200)
+def delete(request,id):
+    lesson.objects.filter(id=id).delete()
+    return HttpResponse('deleted', status=200)
+def edit(request,id,title,desc):
+        lesson.objects.filter(id=id).update(title=title,desc=desc)
+        return HttpResponse('updated', status=200)
 def getAll(request):
     data_lesson = lesson.objects.all().values()
     return JsonResponse({"allLesson": list(data_lesson)})
 def getOnly(request,id): 
     data_lesson = list(lesson.objects.filter(id=id).values())[0]
     return JsonResponse(data_lesson)
+def addQuizz(request,idlesson,idquiz):
+    data = list(lesson.objects.filter(id=idlesson).values())[0]['quiz']
+    data.append({'idQuiz': idquiz})
+    lesson.objects.filter(id=int(idlesson)).update(quiz=data )
+    print(data)
+    return HttpResponse(status=200)
+
+

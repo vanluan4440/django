@@ -1,28 +1,17 @@
+from array import array
 from django.http.response import HttpResponse, JsonResponse
 from django.shortcuts import render
 from .models import quiz
 
 # Create your views here.
 def create(request):
-    if not 'question' in request.POST:
-        return HttpResponse('not found question')
-    elif not 'type' in request.POST:
-        return HttpResponse('not found type')
-    elif not 'answer' in request.POST:
-        return HttpResponse('not found answer')
-    elif not 'point' in request.POST:
-        return HttpResponse('not found point')
-    elif not 'Rightanswer' in request.POST:
-        return HttpResponse('not found right answer')
-    else:
-        question = request.POST['question']
-        type = request.POST['type']
-        answer = request.POST['answer']
-        point = int(request.POST['point'])
-        Rightanswer = request.POST['Rightanswer']
-        data = quiz(question=question,type=type,answer=[answer],point=point,Rightanswer=Rightanswer)
-        data.save()
-        return HttpResponse('created')
+    question = request.POST['question']
+    type = 'radio'
+    point = int(request.POST['point'])
+    Rightanswer = request.POST['an_correct']
+    data = quiz.objects.create(question=question,type=type,answer=[request.POST['an1'],request.POST['an2'],request.POST['an3']],point=point,Rightanswer=Rightanswer)
+    data.save()
+    return JsonResponse({'id':data.id})
 
     
 def edit(request):

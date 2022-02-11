@@ -20,6 +20,9 @@ urlpatterns = [
 
     #create course
     path('instructor/course',views.DatailCourse, name='DatailCourse'),
+
+    #create quizz
+    path('instructor/lesson',views.DatailLesson, name='DatailLesson'),
     
    
 ]
