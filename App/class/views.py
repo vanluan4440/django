@@ -72,13 +72,9 @@ def getAll(request):
     data_class = Class_A.objects.all().values()
     return JsonResponse({"allClass": list(data_class)})
 
-def getOnly(request):
-    if not 'id' in request.POST:
-        return HttpResponse('id not found', status='400')
-    else:
-        id = request.POST['id']
-        data_class = Class_A.objects.filter(id=id).values()
-        return JsonResponse({"theClass": list(data_class)})
+def getOnly(request,id):
+    data_class = Class_A.objects.filter(id=id).values()
+    return JsonResponse({"theClass": list(data_class)})
 def getClassByUser(request):
     token = request.COOKIES.get('token')
     if not token:

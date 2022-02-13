@@ -23,6 +23,15 @@ urlpatterns = [
 
     #create quizz
     path('instructor/lesson',views.DatailLesson, name='DatailLesson'),
+
+    #student
+    path('student',views.IndexStudent, name='IndexStudent'),
+    #detail student
+    path('student/detail',views.DetailStudent, name='DetailStudent'),
+    #result 
+    path('student/result',views.ResultStudent, name='ResultStudent'),
+    path('student/profile',views.ProfileStudent, name='ProfileStudent'),
+    path('student/history',views.HistoryStudent, name='HistoryStudent'),
     
    
 ]

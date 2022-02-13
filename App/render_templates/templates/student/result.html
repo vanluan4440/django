@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resulf</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Sigmar+One);
+        body {
+            background: #3da1d1;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        .congrats {
+            position: absolute;
+            top: 10px;
+            width: 550px;
+            height: 100px;
+            padding: 20px 10px;
+            text-align: center;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+        
+        #point {
+            position: absolute;
+            margin-top: 120px;
+        }
+        
+        #correct {
+            position: absolute;
+            margin-top: 170px;
+        }
+        
+        h1 {
+            transform-origin: 50% 50%;
+            font-size: 50px;
+            font-family: "Sigmar One", cursive;
+            cursor: pointer;
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="congrats">
+        <h1>Congratulations!</h1>
+    </div>
+    <div>
+        <h1 id="point"></h1>
+    </div>
+    <div>
+        <h1 id="correct"></h1>
+    </div>
+    <div>
+        <a href="/student" style="
+          padding: 10px 10px;
+          background-color: white;
+          color: black;
+          position: absolute;
+          border-radius: 5px;
+          text-decoration: none;
+        ">Back to home</a
+      >
+    </div>
+  </body>
+  <script>
+    const data = JSON.parse(localStorage.getItem("result"));
+    const len = localStorage.getItem("len");
+    $("#point").html(`point: ${data["point"]}`);
+    $("#correct").html(`correct: ${data["correct"]}/${len}`);
+  </script>
+</html>

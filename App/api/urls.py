@@ -8,5 +8,7 @@ urlpatterns = [
     path('logout',views.logout, name='logout'),
     path('getUser',views.getUser, name='getUser'),
     #path('token',views.token, name='token'),
+    #getUserDatail
+    path('getUserDatail',views.getUserDatail, name='getUserDatail'),
    
 ]

@@ -58,5 +58,14 @@ def addQuizz(request,idlesson,idquiz):
     lesson.objects.filter(id=int(idlesson)).update(quiz=data )
     print(data)
     return HttpResponse(status=200)
+def deleteQuiz(request, idlesson, idquiz):
+    data = list(lesson.objects.filter(id=idlesson).values())[0]['quiz']
+    newdata = []
+    for i in data:
+        if i['idQuiz'] != idquiz:
+            newdata.append({'idQuiz':i['idQuiz'] })
+        lesson.objects.filter(id=int(idlesson)).update(quiz=newdata )
+        
+
 
 

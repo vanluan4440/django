@@ -46,3 +46,6 @@ def getDetail(request):
         id = request.POST['id']
         data_lesson = quiz.objects.filter(id=id).values()
         return JsonResponse({"theQuiz": list(data_lesson)})
+def getOnly(request,id):
+    data = quiz.objects.filter(id=id).values()
+    return JsonResponse({'quiz':list(data)})

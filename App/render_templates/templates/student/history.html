@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <!-- Mirrored from learnplus.frontendmatter.com/instructor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:12 GMT -->
+
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>Instructor</title>
+
+        <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+        <meta name="robots" content="noindex" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Simplebar -->
+        <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet" />
+
+        <!-- Material Design Icons  -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+        <!-- Roboto Web Font -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" />
+
+        <!-- MDK -->
+        <link type="text/css" href="{% static 'assets/vendor/material-design-kit.css' %}" rel="stylesheet" />
+
+        <!-- Sidebar Collapse -->
+        <link type="text/css" href="{% static 'assets/vendor/sidebar-collapse.min.css' %}" rel="stylesheet" />
+
+        <!-- App CSS -->
+        <link type="text/css" href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+        <!-- Vendor CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/morris.css' %}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer"
+        />
+        <style>
+            .warn {
+                border: 2px solid rgb(214, 112, 112);
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="d-flex flex-column h-100">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand navbar-dark bg-primary m-0">
+                <!-- Brand -->
+                <a href="/student" class="navbar-brand"><i class="material-icons">school</i> Thi trắc nghiệm online</a
+            >
+            <div class="navbar-spacer"></div>
+            <!-- Menu -->
+            <ul class="nav navbar-nav d-none d-md-flex"></ul>
+            <!-- Menu -->
+            <ul class="nav navbar-nav">
+              <!-- User dropdown -->
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link active dropdown-toggle"
+                  data-toggle="dropdown"
+                  href="#"
+                  role="button"
+                  >Account</a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="/student/profile">
+                        <i class="material-icons">person</i> Profile
+                    </a>
+                    <a class="dropdown-item" href="/student/history">
+                        <i class="material-icons">book</i> History
+                    </a>
+                    <a class="dropdown-item" href="/login">
+                        <i class="material-icons">lock</i> Logout
+                    </a>
+                </div>
+                </li>
+                </ul>
+            </nav>
+            <div class="mdk-drawer-layout js-mdk-drawer-layout flex" data-fullbleed data-push data-has-scrolling-region>
+                <div class="mdk-drawer-layout__content mdk-drawer-layout__content--scrollable">
+                    <div class="container">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Lesson</th>
+                                    <th scope="col">Point</th>
+                                    <th scope="col">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tb">
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+        </div>
+        <!-- jQuery -->
+        <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+        <!-- Bootstrap -->
+        <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+        <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+        <!-- Simplebar -->
+        <!-- Used for adding a custom scrollbar to the drawer -->
+        <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+        <!-- MDK -->
+        <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+        <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+        <!-- Sidebar Collapse -->
+        <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
+        <!-- App JS -->
+        <script src="{% static 'assets/js/main.js' %}"></script>
+        <!-- Theme Colors -->
+        <script src="{% static 'assets/js/colors.js' %}"></script>
+        <!-- Morris.js charts -->
+        <script src="{% static 'assets/vendor/raphael.min.js' %}"></script>
+        <!-- Moment.js -->
+        <script src="{% static 'assets/vendor/moment.min.js' %}"></script>
+        <script src="{% static 'assets/vendor/moment-range.min.js' %}"></script>
+        <script src="{% static 'js/setCookies.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+        <script>
+            $.ajax({
+                url: 'http://localhost:8000/result/getResultByUser',
+                type: 'GET',
+                success: (data) => {
+
+                    data['history'].forEach((element, index) => {
+                        $.ajax({
+                            url: `http://localhost:8000/lesson/getOnly/${element['lessonid']}`,
+                            type: 'GET',
+                            success: (res) => {
+                                let str = `
+                                <tr>
+                                    <th scope="row">${index+1}</th>
+                                    <td>${res['title']}</td>
+                                    <td>${element['point']}</td>
+                                    <td>${element['date']}</td>
+                                </tr>
+                                
+                                `
+                                $('#tb').append(str)
+                            }
+                        })
+                    });
+                }
+            })
+        </script>
+        <!-- Last 30 days earnings chart -->
+    </body>
+
+    <!-- Mirrored from learnplus.frontendmatter.com/instructor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:50 GMT -->
+
+    </html>
+</body>
+
+</html>

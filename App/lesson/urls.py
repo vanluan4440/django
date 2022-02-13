@@ -7,5 +7,6 @@ urlpatterns = [
     path('edit/<int:id>/<str:title>/<str:desc>',views.edit, name='edit_lesson'),
     path('getAll',views.getAll, name='getAll_lesson'),
     path('getOnly/<int:id>',views.getOnly, name='getOnly_lesson'),
-    path('addQuiz/<int:idlesson>/<int:idquiz>',views.addQuizz, name='addQuizz'),   
+    path('addQuiz/<int:idlesson>/<int:idquiz>',views.addQuizz, name='addQuizz'), 
+    path('deleteQuiz/<int:idlesson>/<int:idquiz>',views.deleteQuiz, name='deleteQuizz'),   
 ]

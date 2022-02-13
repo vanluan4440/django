@@ -34,6 +34,8 @@ urlpatterns = [
     path('quiz/', include('quiz.urls')),
     #render_templates
     path('', include('render_templates.urls')),
+    #result
+    path('result/', include('result.urls')),
 
 
 ]

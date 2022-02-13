@@ -76,3 +76,14 @@ def getUser(request):
         'author': user['author']
     }
     return JsonResponse(data)
+def getUserDatail(request):
+    token = request.COOKIES.get('token')
+    payload = jwt.decode(token,'secret',algorithms='HS256')
+    id = request.POST['id']
+    user = list(User.objects.filter(id=id).values())[0]
+    data = {
+        'username': user['username'],
+        'email': user['email'],
+        'phone': user['phone'],
+    }
+    return JsonResponse(data)

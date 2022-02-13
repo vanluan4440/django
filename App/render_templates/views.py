@@ -113,7 +113,81 @@ def DatailLesson(request):
         return redirect('/login')
     else:
         return render(request,template_name='lesson/create_quizz.html')
-
+def IndexStudent(request):
+    from django.middleware.csrf import get_token
+    get_token(request)
+    token = request.COOKIES.get('token')
+    if not token:
+        return redirect('/login')
+    try:
+        payload = jwt.decode(token,'secret',algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        return redirect('/login')
+    user = User.objects.filter(id =payload['id'] ).count()
+    if user <1:
+        return redirect('/login')
+    else:
+        return render(request,template_name='student/index.html')
+def DetailStudent(request):
+    from django.middleware.csrf import get_token
+    get_token(request)
+    token = request.COOKIES.get('token')
+    if not token:
+        return redirect('/login')
+    try:
+        payload = jwt.decode(token,'secret',algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        return redirect('/login')
+    user = User.objects.filter(id =payload['id'] ).count()
+    if user <1:
+        return redirect('/login')
+    else:
+        return render(request,template_name='student/detail.html')
+def ResultStudent(request):
+    from django.middleware.csrf import get_token
+    get_token(request)
+    token = request.COOKIES.get('token')
+    if not token:
+        return redirect('/login')
+    try:
+        payload = jwt.decode(token,'secret',algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        return redirect('/login')
+    user = User.objects.filter(id =payload['id'] ).count()
+    if user <1:
+        return redirect('/login')
+    else:
+        return render(request,template_name='student/result.html')
+def ProfileStudent(request):
+    from django.middleware.csrf import get_token
+    get_token(request)
+    token = request.COOKIES.get('token')
+    if not token:
+        return redirect('/login')
+    try:
+        payload = jwt.decode(token,'secret',algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        return redirect('/login')
+    user = User.objects.filter(id =payload['id'] ).count()
+    if user <1:
+        return redirect('/login')
+    else:
+        return render(request,template_name='student/profile.html')
+def HistoryStudent(request):
+    from django.middleware.csrf import get_token
+    get_token(request)
+    token = request.COOKIES.get('token')
+    if not token:
+        return redirect('/login')
+    try:
+        payload = jwt.decode(token,'secret',algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        return redirect('/login')
+    user = User.objects.filter(id =payload['id'] ).count()
+    if user <1:
+        return redirect('/login')
+    else:
+        return render(request,template_name='student/history.html')
     
 
     

@@ -65,12 +65,7 @@
             data-toggle="dropdown"
             href="#"
             role="button"
-            ><img
-              src="{% static 'assets/images/people/50/guy-6.jpg' %}"
-              alt="Avatar"
-              class="rounded-circle"
-              width="40"
-          /></a>
+            >Account</a>
         <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="/instructor/profile">
                 <i class="material-icons">person</i> Profile
@@ -78,7 +73,7 @@
             <a class="dropdown-item" href="/instructor/edit/account/14">
                 <i class="material-icons">edit</i> Edit Account
             </a>
-            <a class="dropdown-item" href="guest-login.html">
+            <a class="dropdown-item" href="/login">
                 <i class="material-icons">lock</i> Logout
             </a>
         </div>
@@ -88,7 +83,7 @@
     </nav>
     <!-- // END Navbar -->
 
-    <div class="container">
+    <div class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="/instructor/dashboard" style="color: rgb(161, 13, 13);">Home</a>
@@ -105,7 +100,7 @@
 
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Detail Information</h4>
@@ -146,6 +141,7 @@
                 </div>
                 </div>
             </div>
+            <div class="col-md-2">
           
            
                 <div class="card">
@@ -178,7 +174,7 @@
              
 
               
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -305,11 +301,9 @@
                 let searchParams = new URLSearchParams(window.location.search)
                 let param = searchParams.get('class')
                 $.ajax({
-                    url: 'http://localhost:8000/class/getOnly',
-                    data: {
-                        id: param
-                    },
-                    type: 'POST',
+                    url: `http://localhost:8000/class/getOnly/${param}`,
+
+                    type: 'GET',
                     success: (data) => {
                         const Class_a = data['theClass'][0]
                         $('#title').val(`${Class_a['title']}`)

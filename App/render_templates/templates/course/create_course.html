@@ -48,8 +48,6 @@
     <nav class="navbar navbar-expand navbar-dark bg-primary m-0 fixed-top">
         <!-- Toggle sidebar -->
 
-        </button>
-
         <!-- Brand -->
         <a href="/instructor/dashboard" class="navbar-brand"><i class="material-icons">school</i> Thi Trắc Nghiệm online</a
       >
@@ -65,22 +63,16 @@
             data-toggle="dropdown"
             href="#"
             role="button"
-            ><img
-              src="{% static 'assets/images/people/50/guy-6.jpg' %}"
-              alt="Avatar"
-              class="rounded-circle"
-              width="40"
-          /></a>
-        <div class="dropdown-menu dropdown-menu-right">
+            >Account</a
+          >
+          <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="/instructor/profile">
-                <i class="material-icons">person</i> Profile
+              <i class="material-icons">person</i> Profile
             </a>
-            <a class="dropdown-item" href="/instructor/edit/account/14">
-                <i class="material-icons">edit</i> Edit Account
-            </a>
-            <a class="dropdown-item" href="guest-login.html">
-                <i class="material-icons">lock</i> Logout
-            </a>
+
+        <a class="dropdown-item" href="/login">
+            <i class="material-icons">lock</i> Logout
+        </a>
         </div>
         </li>
         <!-- // END User dropdown -->
@@ -88,13 +80,13 @@
     </nav>
     <!-- // END Navbar -->
 
-    <div class="container">
+    <div class="container-fluid">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
                 <a href="/instructor/dashboard">Home</a>
             </li>
             <li class="breadcrumb-item">
-                <a onclick="classPage()" style="color: rgb(211, 66, 66);">class</a>
+                <a onclick="classPage()" style="color: rgb(211, 66, 66)">class</a>
             </li>
             <li class="breadcrumb-item active">course</li>
         </ol>
@@ -102,10 +94,9 @@
             <div class="media-body">
                 <h1 class="page-heading h2">DETAIL COURSE</h1>
             </div>
-
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Detail Information</h4>
@@ -123,8 +114,6 @@
                         <div class="form-group">
                             <button class="btn btn-danger" id="update">Update</button>
                         </div>
-
-
                     </div>
                 </div>
                 <div class="card">
@@ -133,21 +122,18 @@
                     </div>
                     <div class="card-body">
                         <p>
-                            <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Add lesson <i class="material-icons">add</i></button
-                >
-              </p>
-                <div class="nestable" id="nestable-handles-primary"> 
-                 <ul class="nestable-list" style="overflow-y: scroll; height: 500px;">
-                  
-                  
-                  
-                </ul> 
-                </div>
-                </div>
+                            <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                  Add lesson <i class="material-icons">add</i>
+                </button>
+                        </p>
+                        <div class="nestable" id="nestable-handles-primary">
+                            <ul class="nestable-list" style="overflow-y: scroll; height: 500px"></ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-          
-           
+            <div class="col-2">
+
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">TIME</h4>
@@ -155,35 +141,26 @@
                     </div>
 
                     <form class="form-horizontal card-body">
-                        <div class="form-group row">
-
-                        </div>
-                        <div class="form-group row">
-
-
-                        </div>
+                        <div class="form-group row"></div>
+                        <div class="form-group row"></div>
                         <div class="form-group row">
                             <label for="start" class="col-sm-6 col-form-label">Start Date</label
-                >
-                <div class="col-sm-6">
-                  <input
-                    class="datepicker form-control"
-                    type="text"
-                    
-                    id="start_day"
-                    disabled="true"
-                  />
-                </div>
+              >
+              <div class="col-sm-6">
+                <input
+                  class="datepicker form-control"
+                  type="text"
+                  id="start_day"
+                  disabled="true"
+                />
               </div>
-             
-
-              
-            </form>
-          </div>
+            </div>
+        </div>
         </div>
       </div>
-      <!-- pop up -->
-      <div
+    </div>
+    <!-- pop up -->
+    <div
       class="modal fade bd-example-modal-lg"
       tabindex="-1"
       role="dialog"
@@ -204,138 +181,127 @@
             >
               <span aria-hidden="true">&times;</span>
             </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Title</label>
-                                <input type="text" class="form-control" id="title_c" name="title" aria-describedby="emailHelp" placeholder="Enter title" />
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Description</label>
-                                <input type="text" class="form-control" id="desc_c" name="desc" placeholder="Enter description" />
-                            </div>
-                            <label for="exampleInputPassword1">File document</label> <br>
-                            <div class="input-group mb-3">
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Title</label>
+                            <input type="text" class="form-control" id="title_c" name="title" aria-describedby="emailHelp" placeholder="Enter title" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Description</label>
+                            <input type="text" class="form-control" id="desc_c" name="desc" placeholder="Enter description" />
+                        </div>
+                        <label for="exampleInputPassword1">File document</label> <br />
+                        <div class="input-group mb-3">
+                            <fieldset>
+                                <div id="msg1" style="color: rgb(185, 58, 58)"></div>
+                                <p>
+                                    <input type="file" id="doc" multiple="multiple" />
+                                </p>
+                            </fieldset>
+                        </div>
+                        <label for="exampleInputPassword1">Image</label> <br />
+                        <div class="input-group mb-3">
+                            <fieldset>
+                                <div id="msg" style="color: rgb(185, 58, 58)"></div>
+                                <p>
+                                    <input type="file" id="multiFiles" multiple="multiple" />
+                                </p>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
 
-                                <fieldset>
-                                    <div id="msg1" style="color: rgb(185, 58, 58)"></div>
-                                    <p>
-                                        <input type="file" id="doc" multiple="multiple" />
-                                    </p>
-                                </fieldset>
-                            </div>
-                            <label for="exampleInputPassword1">Image</label> <br>
-                            <div class="input-group mb-3">
-
-                                <fieldset>
-                                    <div id="msg" style="color: rgb(185, 58, 58)"></div>
-                                    <p>
-                                        <input type="file" id="multiFiles" multiple="multiple" />
-                                    </p>
-                                </fieldset>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="save">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="save">
               Create
             </button>
-                    </div>
                 </div>
             </div>
-
-
-
-
         </div>
+    </div>
 
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
 
-        <!-- jQuery -->
-        <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
 
-        <!-- Bootstrap -->
-        <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
 
-        <!-- Simplebar -->
-        <!-- Used for adding a custom scrollbar to the drawer -->
-        <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+    <!-- MDK -->
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
 
-        <!-- MDK -->
-        <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
-        <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+    <!-- Sidebar Collapse -->
+    <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
 
-        <!-- Sidebar Collapse -->
-        <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
+    <!-- App JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
 
-        <!-- App JS -->
-        <script src="{% static 'assets/js/main.js' %}"></script>
+    <!-- Vendor JS -->
+    <script src="{% static 'assets/vendor/summernote.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jquery.nestable.js' %}"></script>
 
-        <!-- Vendor JS -->
-        <script src="{% static 'assets/vendor/summernote.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
-        <script src="{% static 'assets/vendor/jquery.nestable.js' %}"></script>
+    <!-- Init -->
+    <script src="{% static 'assets/js/summernote.js' %}"></script>
+    <script src="{% static 'assets/js/date-time.js' %}"></script>
+    <script src="{% static 'assets/js/nestable.js' %}"></script>
+    <script src="{% static 'js/setCookies.js' %}"></script>
+    <script>
+        function classPage() {
+            let searchParams = new URLSearchParams(window.location.search);
+            let param = searchParams.get("class");
+            console.log(param);
+            window.location.replace(
+                `http://localhost:8000/instructor/detail?class=${param}`
+            );
+        }
 
-        <!-- Init -->
-        <script src="{% static 'assets/js/summernote.js' %}"></script>
-        <script src="{% static 'assets/js/date-time.js' %}"></script>
-        <script src="{% static 'assets/js/nestable.js' %}"></script>
-        <script src="{% static 'js/setCookies.js' %}"></script>
-        <script>
-            function classPage() {
-                let searchParams = new URLSearchParams(window.location.search)
-                let param = searchParams.get('class')
-                console.log(param);
-                window.location.replace(`http://localhost:8000/instructor/detail?class=${param}`)
+        function detail(idlesson) {
+            let searchParams = new URLSearchParams(window.location.search);
+            let idclass = searchParams.get("class");
+            let idcourse = searchParams.get("course");
+            window.location.replace(
+                `http://localhost:8000/instructor/lesson?class=${idclass}&course=${idcourse}&lesson=${idlesson}`
+            );
+        }
 
-            }
+        function deleteItem(id) {
+            console.log(id);
+            $.ajax({
+                type: "POST",
+                url: `http://localhost:8000/lesson/delete/${id}`,
+                success: () => {
+                    window.location.reload(true);
+                },
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(() => {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            idCourse = urlParams.get("course");
 
-            function detail(idlesson) {
-                let searchParams = new URLSearchParams(window.location.search)
-                let idclass = searchParams.get('class')
-                let idcourse = searchParams.get('course')
-                window.location.replace(`http://localhost:8000/instructor/lesson?class=${idclass}&course=${idcourse}&lesson=${idlesson}`)
-            }
-
-
-
-
-            function deleteItem(id) {
-                console.log(id);
-                $.ajax({
-                    type: 'POST',
-                    url: `http://localhost:8000/lesson/delete/${id}`,
-                    success: () => {
-                        window.location.reload(true)
-                    }
-                })
-
-            }
-        </script>
-        <script>
-            $(document).ready(() => {
-                const queryString = window.location.search;
-                const urlParams = new URLSearchParams(queryString);
-                idCourse = urlParams.get('course')
-
-                $.ajax({
-                    url: `http://localhost:8000/course/getOnly/${idCourse}`,
-                    type: 'GET',
-                    success: (data) => {
-
-                        $('#title').val(`${data['title']}`)
-                        $('#desc').val(`${data['desc']}`)
-                        $('#start_day').val(`${data['create_on']}`)
-                        data['lesson'].forEach(element => {
-                            $.ajax({
-                                url: `http://localhost:8000/lesson/getOnly/${element['idlesson']}`,
-                                type: 'get',
-                                success: (data) => {
-
-                                    let li =
-                                        `
+            $.ajax({
+                url: `http://localhost:8000/course/getOnly/${idCourse}`,
+                type: "GET",
+                success: (data) => {
+                    $("#title").val(`${data["title"]}`);
+                    $("#desc").val(`${data["desc"]}`);
+                    $("#start_day").val(`${data["create_on"]}`);
+                    data["lesson"].forEach((element) => {
+                        $.ajax({
+                            url: `http://localhost:8000/lesson/getOnly/${element["idlesson"]}`,
+                            type: "get",
+                            success: (data) => {
+                                let li = `
                                                 <li class="nestable-item nestable-item-handle" data-id="2">
 
                             <div class="nestable-content" style="margin-left: 0px;">
@@ -351,18 +317,18 @@
                                 <div class="media-body media-middle">
                                   <h5 class="card-title h6 mb-0">
                                     <a href="#"
-                                      >${data['title']}</a
+                                      >${data["title"]}</a
                                     >
                                   </h5>
-                                  <small class="text-muted">${data['desc']}</small>
+                                  <small class="text-muted">${data["desc"]}</small>
                                   <br/>
-                                  <small class="text-muted">${data['create_on']}</small>
+                                  <small class="text-muted">${data["create_on"]}</small>
                                 </div>
                                 <div class="media-right media-middle">
                                     <button onclick="detail(${data["id"]})" class="btn btn-primary btn-sm"><span class="material-icons"> info </span></button
                                   >
                                   <button
-                                    onclick="deleteItem(${data['id']})"
+                                    onclick="deleteItem(${data["id"]})"
                                     class="btn btn-danger btn-sm"
                                     ><i class="material-icons">delete</i></button
                                   >
@@ -371,114 +337,110 @@
                             </div>
                           </li>
 
-                                            `
+                                            `;
 
-
-                                    $(".nestable-list").append(li)
-                                },
-                                error: (data) => {
-                                    console.log(data);
-                                }
-
-                            })
-                        });
-
-                    },
-                    error: (data) => {
-                        console.log(data);
-                    }
-                })
-            })
-        </script>
-        <script>
-            $(document).ready(() => {
-                $('#save').click(() => {
-                    let searchParams = new URLSearchParams(window.location.search)
-                    let param = searchParams.get('course')
-                    const ins = document.getElementById("multiFiles").files.length;
-                    const doc = document.getElementById("doc").files.length;
-                    const title = $("#title_c").val();
-                    const desc = $("#desc_c").val();
-
-                    if (title == "" || desc == "" || ins == 0) {
-                        if (title == "") {
-                            $("#title_c").addClass("warn");
-                        } else {
-                            $("#title_c").removeClass("warn");
-                        }
-                        if (desc == "") {
-                            $("#desc_c").addClass("warn");
-                        } else {
-                            $("#desc_c").removeClass("warn");
-                        }
-
-                        if (ins == 0) {
-                            $("#msg").text("Select at least one file");
-                        } else {
-                            $("#msg").text("");
-                        }
-                        if (doc == 0) {
-                            $("#msg1").text("Select at least one file");
-                        } else {
-                            $("#msg1").text("");
-                        }
-                    } else {
-                        let form_data = new FormData();
-                        form_data.append("title", $("#title_c").val());
-                        form_data.append("desc", $("#desc_c").val());
-                        form_data.append("img", $("#multiFiles")[0].files[0]);
-                        form_data.append("doc", $("#doc")[0].files[0])
-
-                        $.ajax({
-                            url: "http://localhost:8000/lesson/create",
-                            dataType: "json", // what to expect back from server
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            data: form_data,
-                            type: "post",
-                            success: (data) => {
-                                console.log(data);
-                                $.ajax({
-                                    type: 'get',
-                                    url: `http://localhost:8000/course/addLesson/${param}/${data['idLesson']}`,
-                                    success: () => {
-                                        window.location.reload()
-                                    },
-                                    error: (data) => {
-                                        console.error(data)
-                                    }
-                                })
+                                $(".nestable-list").append(li);
                             },
                             error: (data) => {
-                                console.error(data)
+                                console.log(data);
                             },
                         });
-                    }
-                })
-            })
-        </script>
-        <script>
-            $(document).ready(() => {
-                $('#update').click(() => {
-                    let searchParams = new URLSearchParams(window.location.search)
-                    let param = searchParams.get('course')
-                    const title = $('#title').val()
-                    const desc = $('#desc').val()
-                    $.ajax({
-                        type: 'post',
-                        url: `http://localhost:8000/course/edit/${param}/${title}/${desc}`,
-                        success: () => {
-                            window.location.reload()
-                        },
-                        error: (res) => {
-                            console.log(res);
-                        }
-                    })
+                    });
+                },
+                error: (data) => {
+                    console.log(data);
+                },
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(() => {
+            $("#save").click(() => {
+                let searchParams = new URLSearchParams(window.location.search);
+                let param = searchParams.get("course");
+                const ins = document.getElementById("multiFiles").files.length;
+                const doc = document.getElementById("doc").files.length;
+                const title = $("#title_c").val();
+                const desc = $("#desc_c").val();
 
-                })
-            })
-        </script>
+                if (title == "" || desc == "" || ins == 0) {
+                    if (title == "") {
+                        $("#title_c").addClass("warn");
+                    } else {
+                        $("#title_c").removeClass("warn");
+                    }
+                    if (desc == "") {
+                        $("#desc_c").addClass("warn");
+                    } else {
+                        $("#desc_c").removeClass("warn");
+                    }
+
+                    if (ins == 0) {
+                        $("#msg").text("Select at least one file");
+                    } else {
+                        $("#msg").text("");
+                    }
+                    if (doc == 0) {
+                        $("#msg1").text("Select at least one file");
+                    } else {
+                        $("#msg1").text("");
+                    }
+                } else {
+                    let form_data = new FormData();
+                    form_data.append("title", $("#title_c").val());
+                    form_data.append("desc", $("#desc_c").val());
+                    form_data.append("img", $("#multiFiles")[0].files[0]);
+                    form_data.append("doc", $("#doc")[0].files[0]);
+
+                    $.ajax({
+                        url: "http://localhost:8000/lesson/create",
+                        dataType: "json", // what to expect back from server
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: "post",
+                        success: (data) => {
+                            console.log(data);
+                            $.ajax({
+                                type: "get",
+                                url: `http://localhost:8000/course/addLesson/${param}/${data["idLesson"]}`,
+                                success: () => {
+                                    window.location.reload();
+                                },
+                                error: (data) => {
+                                    console.error(data);
+                                },
+                            });
+                        },
+                        error: (data) => {
+                            console.error(data);
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(() => {
+            $("#update").click(() => {
+                let searchParams = new URLSearchParams(window.location.search);
+                let param = searchParams.get("course");
+                const title = $("#title").val();
+                const desc = $("#desc").val();
+                $.ajax({
+                    type: "post",
+                    url: `http://localhost:8000/course/edit/${param}/${title}/${desc}`,
+                    success: () => {
+                        window.location.reload();
+                    },
+                    error: (res) => {
+                        console.log(res);
+                    },
+                });
+            });
+        });
+    </script>
 </body>
 
 <!-- Mirrored from learnplus.frontendmatter.com/fixed-instructor-course-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:42:41 GMT -->

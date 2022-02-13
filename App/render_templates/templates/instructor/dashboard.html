@@ -47,9 +47,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand navbar-dark bg-primary m-0">
             <!-- Toggle sidebar -->
-            <button class="navbar-toggler d-block" data-toggle="sidebar" type="button">
-          <span class="material-icons">menu</span>
-        </button>
+
 
             <!-- Brand -->
             <a href="/instructor/dashboard" class="navbar-brand"><i class="material-icons">school</i> Thi trắc nghiệm online</a
@@ -69,20 +67,12 @@
               data-toggle="dropdown"
               href="#"
               role="button"
-              ><img
-                src="{% static 'assets/images/people/50/guy-6.jpg' %}"
-                alt="Avatar"
-                class="rounded-circle"
-                width="40"
-            /></a>
+              >Account</a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="/instructor/profile">
                     <i class="material-icons">person</i> Profile
                 </a>
-                <a class="dropdown-item" href="/instructor/edit/account/14">
-                    <i class="material-icons">edit</i> Edit Account
-                </a>
-                <a class="dropdown-item" href="guest-login.html">
+                <a class="dropdown-item" href="/login">
                     <i class="material-icons">lock</i> Logout
                 </a>
             </div>
@@ -104,17 +94,17 @@
                     <div class="row">
                         <div class="col-12">
                             <button class="btn btn-primary" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
-                  <span class="material-icons"> add_circle </span> Tạo Lớp
+                 Create Class
                 </button>
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header bg-white">
                                     <div class="media">
                                         <div class="media-body">
-                                            <h4 class="card-title text-center">QUẢN LÍ LỚP HỌC</h4>
+                                            <h4 class="card-title text-center" style="text-transform: uppercase;">classroom management</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -125,112 +115,51 @@
                 </div>
             </div>
 
-            <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
-                <div class="mdk-drawer__content">
-                    <div class="sidebar sidebar-left sidebar-light sidebar-transparent-sm-up o-hidden">
-                        <div class="sidebar-p-y" data-simplebar data-simplebar-force-enabled="true">
-                            <ul class="sidebar-menu">
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="instructor-courses.html">
-                                        <i class="material-icons">class</i> Quản lí lớp
-                                    </a>
-                                </li>
-                                <li class="sidebar-menu-item">
-                                    <a class="sidebar-menu-button" href="instructor-courses.html">
-                                        <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">import_contacts</i
-                      >
-                      Quản lí khóa học
-                    </a>
-                  </li>
-                  <li class="sidebar-menu-item">
-                    <a
-                      class="sidebar-menu-button"
-                      href="instructor-quizzes.html"
-                    >
-                      <i
-                        class="sidebar-menu-icon sidebar-menu-icon--left material-icons"
-                        >help</i
-                      >
-                      Quản lí bài kiểm tra
-                    </a>
-                  </li>
-                </ul>
-                <!-- // END Components Menu -->
-              </div>
-            </div>
-          </div>
+
         </div>
-      </div>
+    </div>
+    </div>
     </div>
     <!-- popup created class -->
-    <div
-      class="modal fade bd-example-modal-lg"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myLargeModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" style="text-transform: uppercase">
-              Create class
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="text-transform: uppercase">
+                        Create class
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Title</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="title"
-                  name="title"
-                  aria-describedby="emailHelp"
-                  placeholder="Enter title"
-                />
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Description</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="desc"
-                  name="desc"
-                  placeholder="Enter description"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <fieldset name="Multiple Files Upload">
-                  <div id="msg" style="color: rgb(185, 58, 58)"></div>
-                  <p>
-                    <input
-                      type="file"
-                      id="multiFiles"
-                      name="files[]"
-                      multiple="multiple"
-                    />
-                  </p>
-                </fieldset>
-              </div>
-            </form>
-          </div>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp" placeholder="Enter title" />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Description</label>
+                            <input type="text" class="form-control" id="desc" name="desc" placeholder="Enter description" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <fieldset name="Multiple Files Upload">
+                                <div id="msg" style="color: rgb(185, 58, 58)"></div>
+                                <p>
+                                    <input type="file" id="multiFiles" name="files[]" multiple="multiple" />
+                                </p>
+                            </fieldset>
+                        </div>
+                    </form>
+                </div>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="save">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="save">
               Save
             </button>
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <!-- jQuery -->
@@ -265,104 +194,100 @@
     <script src="{% static 'assets/vendor/moment-range.min.js' %}"></script>
     <script src="{% static 'js/setCookies.js' %}"></script>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-      integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-      function deleteitem(id) {
-        $.ajax({
-          url: `http://localhost:8000/class/delete/${id}`,
-          type: "get",
-          success: () => {
-            toastr["success"]("delete success");
-            setTimeout(() => {
-              window.location.reload();
-            }, 1500);
-          },
-          error: () => {
-            toastr["error"]("Error");
-          },
-        });
-      }
-      function detail(id) {
-        window.location.replace(
-          `http://localhost:8000/instructor/detail?class=${id}`
-        );
-      }
+        function deleteitem(id) {
+            $.ajax({
+                url: `http://localhost:8000/class/delete/${id}`,
+                type: "get",
+                success: () => {
+                    toastr["success"]("delete success");
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500);
+                },
+                error: () => {
+                    toastr["error"]("Error");
+                },
+            });
+        }
+
+        function detail(id) {
+            window.location.replace(
+                `http://localhost:8000/instructor/detail?class=${id}`
+            );
+        }
     </script>
     <script>
-      $(document).ready((e) => {
-        $("#save").click(() => {
-          const ins = document.getElementById("multiFiles").files.length;
-          const title = $("#title").val();
-          const desc = $("#desc").val();
-          if (title == "" || desc == "" || ins == 0) {
-            if (title == "") {
-              $("#title").addClass("warn");
-            } else {
-              $("#title").removeClass("warn");
-            }
-            if (desc == "") {
-              $("#desc").addClass("warn");
-            } else {
-              $("#desc").removeClass("warn");
-            }
+        $(document).ready((e) => {
+            $("#save").click(() => {
+                const ins = document.getElementById("multiFiles").files.length;
+                const title = $("#title").val();
+                const desc = $("#desc").val();
+                if (title == "" || desc == "" || ins == 0) {
+                    if (title == "") {
+                        $("#title").addClass("warn");
+                    } else {
+                        $("#title").removeClass("warn");
+                    }
+                    if (desc == "") {
+                        $("#desc").addClass("warn");
+                    } else {
+                        $("#desc").removeClass("warn");
+                    }
 
-            if (ins == 0) {
-              $("#msg").text("Select at least one file");
-            } else {
-              $("#msg").text("");
-            }
-          } else {
-            let form_data = new FormData();
-            form_data.append("title", $("#title").val());
-            form_data.append("desc", $("#desc").val());
-            form_data.append("img", $("#multiFiles")[0].files[0]);
+                    if (ins == 0) {
+                        $("#msg").text("Select at least one file");
+                    } else {
+                        $("#msg").text("");
+                    }
+                } else {
+                    let form_data = new FormData();
+                    form_data.append("title", $("#title").val());
+                    form_data.append("desc", $("#desc").val());
+                    form_data.append("img", $("#multiFiles")[0].files[0]);
+
+                    $.ajax({
+                        url: "http://localhost:8000/class/create",
+                        dataType: "json", // what to expect back from server
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: "post",
+                        success: (data) => {
+                            if (data.responseText == "created") {
+                                toastr["success"]("Create success");
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, 4000);
+                            } else {
+                                toastr["error"]("Error");
+                            }
+                        },
+                        error: (data) => {
+                            if (data.responseText == "created") {
+                                toastr["success"]("Create success");
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, 1500);
+                            } else {
+                                toastr["error"]("Error");
+                            }
+                        },
+                    });
+                }
+            });
 
             $.ajax({
-              url: "http://localhost:8000/class/create",
-              dataType: "json", // what to expect back from server
-              cache: false,
-              contentType: false,
-              processData: false,
-              data: form_data,
-              type: "post",
-              success: (data) => {
-                if (data.responseText == "created") {
-                  toastr["success"]("Create success");
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 4000);
-                } else {
-                  toastr["error"]("Error");
-                }
-              },
-              error: (data) => {
-                if (data.responseText == "created") {
-                  toastr["success"]("Create success");
-                  setTimeout(() => {
-                    window.location.reload();
-                  }, 1500);
-                } else {
-                  toastr["error"]("Error");
-                }
-              },
-            });
-          }
-        });
+                type: "GET",
+                url: "http://localhost:8000/class/getClassByUser",
+                success: (data) => {
+                    const Class_a = data["ClassByUser"];
+                    Class_a.forEach((element) => {
+                        let img = element["img"];
 
-        $.ajax({
-          type: "GET",
-          url: "http://localhost:8000/class/getClassByUser",
-          success: (data) => {
-            const Class_a = data["ClassByUser"];
-            Class_a.forEach((element) => {
-              let img = element["img"];
-
-              let li = `
+                        let li = `
             
               <li class="list-group-item mt-1" >
                  
@@ -373,12 +298,12 @@
                                             </div>
                                             <div class="media-body media-middle">
                                                 <h5 class="card-title h6 mb-0">
-                                                    <a >${element.title}</a
+                                                    <a > Name:${element.title}</a
                             >
                           </h5>
-                          <small class="text-muted">${element["desc"]}</small>
+                          <small class="text-muted">Description: ${element["desc"]}</small>
                           </br>
-                          <small class="text-muted">${element["created_on"]}</small>
+                          <small class="text-muted">Date: ${element["created_on"]}</small>
                         </div>
                         <div class="media-right media-middle">
                           
@@ -394,17 +319,18 @@
                   </li>
                 
               `;
-              $(".nestable-list").append(li);
+                        $(".nestable-list").append(li);
+                    });
+                },
+                error: (data) => {
+                    console.log(data);
+                },
             });
-          },
-          error: (data) => {
-            console.log(data);
-          },
         });
-      });
     </script>
     <!-- Last 30 days earnings chart -->
-  </body>
+</body>
 
-  <!-- Mirrored from learnplus.frontendmatter.com/instructor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:50 GMT -->
+<!-- Mirrored from learnplus.frontendmatter.com/instructor-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:40:50 GMT -->
+
 </html>
