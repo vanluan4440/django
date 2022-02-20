@@ -172,7 +172,6 @@
                     success: (data) => {
                         const res = data['data'][0]
                         const question = JSON.parse(res['ListQuestion'])
-
                         m = Number(res['Time'])
                         ss = 59
                         setInterval(() => {
@@ -202,18 +201,19 @@
                                 url: `http://localhost:8000/lesson/getRandom/${element['idLesson']}/${element['amount']}`,
                                 type: 'GET',
                                 success: (response) => {
-
+                                    idindex = 0
                                     response['data'].forEach((el, index) => {
                                         $.ajax({
                                             url: `http://localhost:8000/quiz/getOnly/${el['idQuiz']}`,
                                             type: 'GET',
                                             success: (res) => {
+                                                idindex += 1
                                                 localStorage.setItem(
-                                                    `correct-${index}`,
+                                                    `correct-${idindex}`,
                                                     res["quiz"][0]["Rightanswer"]
                                                 );
                                                 localStorage.setItem(
-                                                    `point-${index}`,
+                                                    `point-${idindex}`,
                                                     res["quiz"][0]["point"]
                                                 );
                                                 let str = `
@@ -221,21 +221,21 @@
                         <div class="card">
                         <div class="card-header">
                            
-                            <h5> Question:  ${res["quiz"][0]["question"]}</h5>
+                            <h5> Question ${idindex}:  ${res["quiz"][0]["question"]}</h5>
                         </div>
                         <div class="card-body">
                             <blockquote class="blockquote mb-0">
-                            <form id="input-radio-${index}" >
+                            <form id="input-radio-${idindex}" >
                                 
-                                <input type="radio" name="radAnswer-${index}" value="${
+                                <input type="radio" name="radAnswer-${idindex}" value="${
                           res["quiz"][0]["answer"][0]
                         }"> ${res["quiz"][0]["answer"][0]}
                                 <br>
-                                <input type="radio" name="radAnswer-${index}" value="${
+                                <input type="radio" name="radAnswer-${idindex}" value="${
                           res["quiz"][0]["answer"][1]
                         }"> ${res["quiz"][0]["answer"][1]}
                                 <br>
-                                <input type="radio" name="radAnswer-${index}" value="${
+                                <input type="radio" name="radAnswer-${idindex}" value="${
                           res["quiz"][0]["answer"][2]
                         }"> ${res["quiz"][0]["answer"][2]}
 
@@ -277,8 +277,8 @@
                 $('#submit').click(() => {
                     ans_choose = 0
                     point = 0
-                    total = localStorage.getItem('total')
-                    for (let index = 0; index < total; index++) {
+                    total = Number(localStorage.getItem('total'))
+                    for (let index = 1; index < total + 1; index++) {
                         var ans = $(`input[name="radAnswer-${index}"]:checked`).val();
                         var correct = localStorage.getItem(`correct-${index}`);
                         if (ans == correct) {
@@ -289,8 +289,8 @@
                     }
                     obj = {
                         course: searchParams.get("course"),
-                        point: point,
-                        correct: ans_choose,
+                        point: Number(point),
+                        correct: Number(ans_choose),
                     };
                     localStorage.setItem("result", JSON.stringify(obj));
                     $.ajax({
@@ -304,7 +304,7 @@
                     })
                     setTimeout(() => {
                         window.location.replace("http://localhost:8000/student/result");
-                    }, 1000)
+                    }, 500)
                 })
             })
         </script>
