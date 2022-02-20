@@ -300,6 +300,7 @@
             $(document).ready(() => {
                 let searchParams = new URLSearchParams(window.location.search)
                 let param = searchParams.get('class')
+                localStorage.setItem('class', param)
                 $.ajax({
                     url: `http://localhost:8000/class/getOnly/${param}`,
 

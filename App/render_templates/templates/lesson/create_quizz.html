@@ -91,33 +91,7 @@
                 <a href="#">lesson</a>
             </li>
         </ol>
-        <div class="media">
-            <div class="media-body">
-                <h1 class="page-heading h2">RESULT</h1>
-                <button class="btn btn-primary mb-3" id="hide-show">Hide/show</button>
-            </div>
-        </div>
-        <div class="row" id="result">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">FullName</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Point</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Date</th>
 
-                    </tr>
-                </thead>
-                <tbody id="tb">
-
-
-                </tbody>
-            </table>
-
-        </div>
         <div class="media">
             <div class="media-body">
                 <h1 class="page-heading h2">DETAIL LESSON</h1>
@@ -326,6 +300,7 @@
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             idLesson = urlParams.get("lesson");
+            localStorage.setItem('lesson', idLesson)
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:8000/result/getResultByLesson',

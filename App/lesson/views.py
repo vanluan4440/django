@@ -1,3 +1,4 @@
+from array import array
 from msilib.schema import File
 from django.shortcuts import render
 from datetime import datetime
@@ -6,6 +7,7 @@ from .models import lesson
 import random
 import jwt
 from datetime import date
+import random
 # Create your views here.
 def handle_uploaded_file(f):
     name = random.randrange(1,10000000000)
@@ -67,5 +69,14 @@ def deleteQuiz(request, idlesson, idquiz):
         lesson.objects.filter(id=int(idlesson)).update(quiz=newdata )
         
 
-
+def getRandomQuiz(request,idlesson,amount):
+    newdata = []
+    array = []
+    for x in range(amount):
+        index = random.randint(0,x)
+        array.append(index)
+        data = lesson.objects.filter(id=idlesson).values()[0]['quiz'][index]
+        newdata.append(data)
+    print(array)
+    return JsonResponse({'data':list(newdata)})
 

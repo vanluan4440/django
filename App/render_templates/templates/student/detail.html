@@ -72,7 +72,7 @@
                 <!-- Toggle sidebar -->
 
                 <!-- Brand -->
-                <a href="/instructor/dashboard" class="navbar-brand"><i class="material-icons">school</i> Thi trắc nghiệm online</a
+                <a onclick="home()" class="navbar-brand" style="color: white;"><i class="material-icons">school</i> Thi trắc nghiệm online</a
             >
 
             <div class="navbar-spacer"></div>
@@ -128,7 +128,18 @@
                     <hr style="font-weight: bold" />
                     <div class="container-fluid">
                         <div class="row" id="course_index" style="padding: 0px 100px 0px 100px;"></div>
+                        <div class="row" style="padding: 0px 100px 0px 100px;" id="exam"></div>
                         <button class="btn btn-primary" style="margin-left: 85%;" id="submit">Sumit</button>
+                    </div>
+                    <div class="container" id="doc">
+                        Download Sample DOC File How it feels when you open a Microsoft Word document within an app and find that the .doc file is not opening well or the file is corrupted? Test .doc or Microsoft Word document with ease using this free service. As per above,
+                        your visitors might get frustrated if they are not able to open their official doc files with ease in an application. The result, they might search for better options and switch to other apps immediately. It is always better to
+                        test the .doc files well in advance by downloading free Word document samples for demo/test use. Get a range of .doc files to download ranging from 100KB to 5MB. Whether you have allocated a size in kb or mb for a doc file upload,
+                        just see which one suits the requirement. What makes this service unique is free downloading whenever and wherever you want. Testing your php, c#, or any other programming language code targeted towards doc file import functionality
+                        becomes much easier now with just one tap download. Getting sample word documents for demo/test use could be one heck of a cumbersome task. To check uploading functionality of document file in your website or application, download
+                        sample .doc file with different sizes.
+
+
                     </div>
                 </div>
 
@@ -173,6 +184,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
         <script>
+            function home() {
+                let classid = localStorage.getItem('class')
+                window.location.replace(`http://localhost:8000/student/detail?class=${classid}`)
+
+            }
+
             function load(id) {
                 $.ajax({
                     type: "GET",
@@ -235,12 +252,16 @@
                 if (searchParams.get("class") !== null) {
                     load(idclass);
                     $("#submit").hide();
+                    $("#doc").hide();
+                    localStorage.setItem('class', idclass)
                 } else {
                     console.log("null class");
                 }
                 if (searchParams.get("course") !== null) {
                     $("#submit").hide();
+                    $("#doc").hide();
                     let idcourse = searchParams.get("course");
+                    localStorage.setItem('course', idcourse)
                     $.ajax({
                         type: "GET",
                         url: `http://localhost:8000/course/getOnly/${idcourse}`,
@@ -263,7 +284,7 @@
                                     url: `http://localhost:8000/lesson/getOnly/${element["idlesson"]}`,
                                     type: "GET",
                                     success: (data) => {
-                                        console.log(data);
+
                                         let str = `
                       <div class="col-3">
                                 <div class="card">
@@ -297,16 +318,18 @@
                     console.log("null class");
                 }
                 if (searchParams.get("lesson") !== null) {
-                    $('#start').show()
+                    $('#start').hide()
                     $("#course_index").hide();
                     $("#submit").hide();
 
                     let idlesson = searchParams.get("lesson");
+                    localStorage.setItem('lesson', idlesson)
                     $.ajax({
                         type: "GET",
                         url: `http://localhost:8000/lesson/getOnly/${idlesson}`,
                         success: (data) => {
                             const dataClass = data;
+                            console.log(dataClass);
 
                             $("#title_c").html(`Lesson name: ${dataClass["title"]}`);
                             $("#desc_c").html(
@@ -315,67 +338,11 @@
 
                             const str = `
                 <img src="../../../static/${dataClass["img"]}" style="width:100%; height:300px; border-radius:10px;opacity: 0.9;" alt="">
-           
+                
                 `;
                             $("#show_class").append(str);
                             localStorage.setItem("len", dataClass["quiz"].length);
 
-                            dataClass["quiz"].forEach((element, index) => {
-                                $.ajax({
-                                    url: `http://localhost:8000/quiz/getOnly/${element["idQuiz"]}`,
-                                    type: "GET",
-                                    success: (data) => {
-                                        localStorage.setItem(
-                                            `correct-${index}`,
-                                            data["quiz"][0]["Rightanswer"]
-                                        );
-                                        localStorage.setItem(
-                                            `point-${index}`,
-                                            data["quiz"][0]["point"]
-                                        );
-                                        let str = `
-                      <div class="col-12">
-                        <div class="card">
-                        <div class="card-header">
-                            Question: ${index + 1} <br>
-                            Content: ${data["quiz"][0]["question"]}
-                        </div>
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                            <form id="input-radio-${index}" >
-                                
-                                <input type="radio" name="radAnswer-${index}" value="${
-                          data["quiz"][0]["answer"][0]
-                        }"> ${data["quiz"][0]["answer"][0]}
-                                <br>
-                                <input type="radio" name="radAnswer-${index}" value="${
-                          data["quiz"][0]["answer"][1]
-                        }"> ${data["quiz"][0]["answer"][1]}
-                                <br>
-                                <input type="radio" name="radAnswer-${index}" value="${
-                          data["quiz"][0]["answer"][2]
-                        }"> ${data["quiz"][0]["answer"][2]}
-
-                                
-                                
-                            </form>
-                            <footer class="blockquote-footer"> point: ${
-                              data["quiz"][0]["point"]
-                            } </footer>
-                            </blockquote>
-                        </div>
-                        </div>
-                            </div>
-                      
-                      
-                      `;
-                                        $("#course_index").append(str);
-                                    },
-                                    error: (data) => {
-                                        console.error(data);
-                                    },
-                                });
-                            });
                         },
                         error: (data) => {
                             console.log(data);
@@ -456,6 +423,62 @@
                 if (m < 10 && ss < 10) {
                     $("#time").html(`Time: 0${m}:0${ss}`);
                 }
+            }
+        </script>
+        <script>
+            $(document).ready(() => {
+                let searchParams = new URLSearchParams(window.location.search);
+                let id = searchParams.get("course");
+                $.ajax({
+                    url: 'http://localhost:8000/exam/getAll',
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    success: (data) => {
+                        const res = data['data']
+                        today = new Date()
+                        date = ''
+
+                        if (`${today.getMonth()}`.length) {
+                            date = `${today.getFullYear()}-0${today.getMonth()+1}-${today.getDate()}`
+                        } else {
+                            date = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
+                        }
+
+                        console.log(date);
+                        res.forEach((el, index) => {
+                            console.log(el);
+                            if (el['DateStart'] == date) {
+                                let dom = `
+                                <div class="col-12">
+                                                    <div class="alert alert-success" role="alert">
+                              <h4 class="alert-heading">${el['nameExam']}</h4>
+                              <p class="mb-0">Date start: ${el['DateStart']}</p>
+                              <p class="mb-0">Date end: ${el['EndDate']}</p>
+                              <p class="mb-0">Time: ${el['Time']} minutes</p>
+                              <hr>
+                              <button class="btn btn-primary" onClick="openExam(${el['id']},${el['course']})">Take exam</button>
+                            </div>
+                                         </div>           `
+
+                                $('#exam').append(dom)
+                            }
+                        });
+
+
+                    },
+                    error: (data) => {
+                        console.log(data);
+                    }
+
+                })
+            })
+
+            function openExam(id, course) {
+                window.location.replace(`http://localhost:8000/student/takeExam?id=${id}&course=${course}`)
+                window.localStorage.clear()
+
             }
         </script>
         <!-- Last 30 days earnings chart -->

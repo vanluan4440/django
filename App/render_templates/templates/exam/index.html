@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from learnplus.frontendmatter.com/fixed-instructor-course-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:42:41 GMT -->
+
+<head>
+    {% load static %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Instructor</title>
+
+    <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
+    <meta name="robots" content="noindex" />
+
+    <!-- Simplebar -->
+    <link type="text/css" href="{% static 'assets/vendor/simplebar.css' %}" rel="stylesheet" />
+
+    <!-- Material Design Icons  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Roboto Web Font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet" />
+
+    <!-- MDK -->
+    <link type="text/css" href="{% static 'assets/vendor/material-design-kit.css' %}" rel="stylesheet" />
+
+    <!-- Sidebar Collapse -->
+    <link type="text/css" href="{% static 'assets/vendor/sidebar-collapse.min.css' %}" rel="stylesheet" />
+
+    <!-- App CSS -->
+    <link type="text/css" href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+    <!-- Bootstrap Datepicker -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-datepicker.css' %}" />
+    <!-- Summernote WYSIWYG -->
+    <link rel="stylesheet" href="{% static 'assets/css/summernote.css' %}" />
+    <!-- Nestable -->
+    <link rel="stylesheet" href="{% static 'assets/css/nestable.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .warn {
+            border: 2px solid rgb(214, 112, 112);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-12">
+                <h3>CREATE EXAM</h3>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Start Date: </label>
+                            <input type="date" class="form-control" id="date_start" placeholder="Start Date">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPassword4">End Date: </label>
+                            <input type="date" class="form-control" id="date_end" placeholder="End Date">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Time: </label>
+                            <input type="number" class="form-control" id="time" min="15" value="15" placeholder="Enter Time">
+                        </div>
+                    </div>
+                    <div class="form-group p-3" style="background-color: rgb(247, 240, 240); border-radius: 10px;">
+                        <div class="container" id="box_index">
+
+
+
+                        </div>
+                    </div>
+
+
+
+                </form>
+                <button type="button" class="btn btn-primary" id="create-btn">CREATE EXAM</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="{% static 'assets/vendor/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/vendor/popper.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap.min.js' %}"></script>
+
+    <!-- Simplebar -->
+    <!-- Used for adding a custom scrollbar to the drawer -->
+    <script src="{% static 'assets/vendor/simplebar.js' %}"></script>
+
+    <!-- MDK -->
+    <script src="{% static 'assets/vendor/dom-factory.js' %}"></script>
+    <script src="{% static 'assets/vendor/material-design-kit.js' %}"></script>
+
+    <!-- Sidebar Collapse -->
+    <script src="{% static 'assets/vendor/sidebar-collapse.js' %}"></script>
+
+    <!-- App JS -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <!-- Vendor JS -->
+    <script src="{% static 'assets/vendor/summernote.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/jquery.nestable.js' %}"></script>
+
+    <!-- Init -->
+    <script src="{% static 'assets/js/summernote.js' %}"></script>
+    <script src="{% static 'assets/js/date-time.js' %}"></script>
+    <script src="{% static 'assets/js/nestable.js' %}"></script>
+    <script src="{% static 'js/setCookies.js' %}"></script>
+
+
+    <script>
+        $(document).ready(() => {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            id = urlParams.get("id");
+
+            $.ajax({
+                url: `http://localhost:8000/course/getOnly/${id}`,
+                type: "GET",
+                success: (data) => {
+                    localStorage.setItem('courseLen', data['lesson'].length)
+                    data["lesson"].forEach((element, index) => {
+                        $.ajax({
+                            url: `http://localhost:8000/lesson/getOnly/${element["idlesson"]}`,
+                            type: "get",
+                            success: (data) => {
+                                console.log(data);
+                                let el = `
+                                <div class="row p-1 mt-2" style="background-color: rgb(125, 181, 230);border-radius: 5px;">
+                                <div class="col-4">
+                                    <p style=" font-weight: bold;top:5px">${data['title']}  <span id="data-id-${index}" style="display:none" class="badge badge-danger">${data['id']}</span> </p>
+                                </div>
+                                <div class="col-2">
+                                    <input type="number" id="input-${index}" class="form-control" min=0 max="${data['quiz'].length}" value="${data['quiz'].length}">
+                                </div>
+                            </div>
+                                
+                                `
+                                $('#box_index').append(el)
+                            },
+                            error: (data) => {
+                                console.log(data);
+                            },
+                        });
+                    });
+                },
+                error: (data) => {
+                    console.log(data);
+                },
+            });
+
+
+            $('#create-btn').click(() => {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                idCourse = urlParams.get("id");
+                const startDate = $('#date_start').val()
+                const endDate = $('#date_end').val()
+                const time = $('#time').val()
+                if (startDate === "" || endDate === "" || time === "") {
+                    if (startDate === "") {
+                        $('#date_start').addClass('warn')
+                    } else {
+                        $('#date_start').removeClass('warn')
+                    }
+                    if (endDate === "") {
+                        $('#date_end').addClass('warn')
+                    } else {
+                        $('#date_end').removeClass('warn')
+                    }
+                    if (time === "") {
+                        $('#time').addClass('warn')
+                    } else {
+                        $('#time').removeClass('warn')
+                    }
+                } else {
+                    list = []
+                    const len = localStorage.getItem('courseLen')
+
+                    for (let index = 0; index < len; index++) {
+                        let id = $(`#data-id-${index}`).text()
+                        let input = $(`#input-${index}`).val()
+                        let ob = {
+                            idLesson: Number(id),
+                            amount: Number(input)
+                        }
+                        list.push(ob)
+                    }
+
+
+                    const data = {
+                        'start': startDate,
+                        'end': endDate,
+                        'time': Number(time),
+                        'list': JSON.stringify(list),
+                        'course': Number(idCourse)
+                    }
+                    $.ajax({
+                        url: 'http://localhost:8000/exam/add',
+                        type: 'POST',
+                        data: data,
+                        success: (res) => {
+                            console.log(data);
+                        },
+                        error: (res) => {
+                            console.log(res)
+                        }
+                    })
+                    window.location.replace('http://localhost:8000/instructor/dashboard')
+
+
+                }
+
+
+            })
+        });
+    </script>
+
+</body>
+
+<!-- Mirrored from learnplus.frontendmatter.com/fixed-instructor-course-edit.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 09 Jun 2018 08:42:41 GMT -->
+
+</html>

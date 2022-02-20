@@ -93,7 +93,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Lesson</th>
+                                    <th scope="col">Course</th>
                                     <th scope="col">Point</th>
                                     <th scope="col">Date</th>
                                 </tr>
@@ -137,13 +137,13 @@
 
         <script>
             $.ajax({
-                url: 'http://localhost:8000/result/getResultByUser',
+                url: 'http://localhost:8000/resultCourse/getResultByUser',
                 type: 'GET',
                 success: (data) => {
 
                     data['history'].forEach((element, index) => {
                         $.ajax({
-                            url: `http://localhost:8000/lesson/getOnly/${element['lessonid']}`,
+                            url: `http://localhost:8000/course/getOnly/${element['courseid']}`,
                             type: 'GET',
                             success: (res) => {
                                 let str = `

@@ -69,7 +69,7 @@
           position: absolute;
           border-radius: 5px;
           text-decoration: none;
-        ">Back to home</a
+        " onclick="clearHistory()">Back to home</a
       >
     </div>
   </body>
@@ -77,6 +77,9 @@
     const data = JSON.parse(localStorage.getItem("result"));
     const len = localStorage.getItem("len");
     $("#point").html(`point: ${data["point"]}`);
-    $("#correct").html(`correct: ${data["correct"]}/${len}`);
+    $("#correct").html(`correct: ${data["correct"]}`);
+    function clearHistory(){
+        
+    }
   </script>
 </html>

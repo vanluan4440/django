@@ -36,6 +36,11 @@ urlpatterns = [
     path('', include('render_templates.urls')),
     #result
     path('result/', include('result.urls')),
+    #exam
+    path('exam/', include('exam.urls')),
+
+    # result course
+    path('resultCourse/', include('resultCourse.urls')),
 
 
 ]

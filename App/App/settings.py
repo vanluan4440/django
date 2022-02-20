@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'lesson',
     'quiz',
     'render_templates',
-    'result'
+    'result',
+    'exam',
+    'resultCourse'
     
 ]
 

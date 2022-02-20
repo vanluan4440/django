@@ -92,7 +92,35 @@
         </ol>
         <div class="media">
             <div class="media-body">
+                <h1 class="page-heading h2">RESULT</h1>
+                <button class="btn btn-primary mb-3" id="hide-show">Hide/show</button>
+            </div>
+        </div>
+        <div class="row" id="result">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">FullName</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Point</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tb">
+
+
+                </tbody>
+            </table>
+
+        </div>
+        <div class="media">
+            <div class="media-body p-3">
                 <h1 class="page-heading h2">DETAIL COURSE</h1>
+                <button class="btn btn-primary" onclick="createExam()"> CREATE EXAM</button>
             </div>
         </div>
         <div class="row">
@@ -141,51 +169,37 @@
                     </div>
 
                     <form class="form-horizontal card-body">
-                        <div class="form-group row"></div>
-                        <div class="form-group row"></div>
+
                         <div class="form-group row">
-                            <label for="start" class="col-sm-6 col-form-label">Start Date</label
-              >
-              <div class="col-sm-6">
-                <input
-                  class="datepicker form-control"
-                  type="text"
-                  id="start_day"
-                  disabled="true"
-                />
-              </div>
+                            <label for="start" class="col-sm-6 col-form-label">Start Date</label>
+                            <div class="col-sm-6">
+                                <input class="datepicker form-control" type="text" id="start_day" disabled="true" />
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
             </div>
         </div>
-        </div>
-      </div>
     </div>
     <!-- pop up -->
-    <div
-      class="modal fade bd-example-modal-lg"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="myLargeModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" style="text-transform: uppercase">
-              Create lesson
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="text-transform: uppercase">
+                        Create lesson
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-group">
-                <label for="exampleInputEmail1">Title</label>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Title</label>
                             <input type="text" class="form-control" id="title_c" name="title" aria-describedby="emailHelp" placeholder="Enter title" />
                         </div>
                         <div class="form-group">
@@ -263,6 +277,12 @@
             );
         }
 
+        function createExam() {
+            let searchParams = new URLSearchParams(window.location.search);
+            let param = searchParams.get("course");
+            window.location.href = `http://localhost:8000/instructor/exam?id=${param}`
+        }
+
         function detail(idlesson) {
             let searchParams = new URLSearchParams(window.location.search);
             let idclass = searchParams.get("class");
@@ -288,6 +308,52 @@
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             idCourse = urlParams.get("course");
+            localStorage.setItem('course', idCourse)
+            $("#hide-show").click(() => {
+                $("#result").toggle()
+            })
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8000/resultCourse/getResultByCourse',
+                data: {
+                    'courseid': idCourse
+                },
+                success: (data) => {
+                    data['history'].forEach((element, index) => {
+                        let el = ""
+                        if (element['point'] < 5) {
+                            el = `<p style="color:red">Fall</p>`
+                        } else {
+                            el = `<p style="color:green">Pass</p>`
+
+                        }
+                        $.ajax({
+                            type: 'POST',
+                            url: "http://localhost:8000/api/getUserDatail",
+                            data: {
+                                'id': element['userid']
+                            },
+                            success: (res) => {
+                                let str = `
+                                <tr>
+                        <th scope="col">${index+1}</th>
+                        <th scope="col">${res['username']}</th>
+                        <th scope="col">${res['email']}</th>
+                        <th scope="col">${res['phone']}</th>
+                        <th scope="col">${element['point']}</th>
+                        <th scope="col" >${el}</th>
+                        <th scope="col">${element['date']}</th>
+                    </tr>
+                                
+                                `
+                                $('#tb').append(str)
+                            }
+                        })
+                    });
+
+                }
+
+            })
 
             $.ajax({
                 url: `http://localhost:8000/course/getOnly/${idCourse}`,

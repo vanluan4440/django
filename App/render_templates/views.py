@@ -65,6 +65,23 @@ def InstructorEditAccount(request,id):
     else:
         return render(request,template_name='instructor/account-edit.html')
 #create class
+def InstructorExam(request):
+    from django.middleware.csrf import get_token
+    get_token(request)
+    token = request.COOKIES.get('token')
+    if not token:
+        return redirect('/login')
+    try:
+        payload = jwt.decode(token,'secret',algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        return redirect('/login')
+    user = User.objects.filter(id =payload['id'] ).count()
+    if user <1:
+        return redirect('/login')
+    else:
+        return render(request,template_name='exam/index.html')
+
+
 def DetailClass(request):
     from django.middleware.csrf import get_token
     get_token(request)
@@ -188,6 +205,21 @@ def HistoryStudent(request):
         return redirect('/login')
     else:
         return render(request,template_name='student/history.html')
+def TakeExamStudent(request):
+    from django.middleware.csrf import get_token
+    get_token(request)
+    token = request.COOKIES.get('token')
+    if not token:
+        return redirect('/login')
+    try:
+        payload = jwt.decode(token,'secret',algorithms='HS256')
+    except jwt.ExpiredSignatureError:
+        return redirect('/login')
+    user = User.objects.filter(id =payload['id'] ).count()
+    if user <1:
+        return redirect('/login')
+    else:
+        return render(request,template_name='student/takeExam.html')
     
 
     
